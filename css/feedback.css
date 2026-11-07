@@ -1,0 +1,26 @@
+/* ---------- Feedback: a plain form for grown-ups, in the buddy's colours ---------- */
+.lf-fb-head { display: flex; flex-direction: column; gap: 4px; }
+.lf-fb-for { margin: 0; font: 600 0.8125rem/1.2 var(--body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.lf-fb-title { margin: 0; font: 700 1.75rem/1.2 var(--display); text-wrap: balance; }
+.lf-fb-intro { margin: 4px 0 0; color: var(--ink-soft); line-height: 1.45; }
+.lf-fb-form { display: flex; flex-direction: column; gap: 14px; }
+.lf-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.lf-label { font: 600 1rem/1.2 var(--display); }
+.lf-label small { font: 400 0.875rem/1.2 var(--body); color: var(--ink-soft); }
+.lf-field input, .lf-field textarea {
+  width: 100%; min-width: 0; padding: 12px 14px;
+  font: 400 1rem/1.4 var(--body); color: var(--ink);   /* 16px, so iPads and iPhones don't zoom in */
+  background: var(--key); border: 2px solid var(--line); border-radius: 14px;
+}
+.lf-field textarea { resize: vertical; min-height: 8.5rem; }
+.lf-field input:focus-visible, .lf-field textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; border-color: var(--focus); }
+/* hidden from people; only spam robots fill it in */
+.lf-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.lf-fb-status { margin: 0; min-height: 1.4em; line-height: 1.4; }
+.lf-fb-status:empty { min-height: 0; }
+.lf-fb-status.good { color: var(--good); font-weight: 600; }
+.lf-fb-status.bad { color: var(--bad); }
+.lf-fb-status.note { color: var(--ink-soft); }
+.lf-fb-form .lf-go:disabled { opacity: 0.45; cursor: default; transform: none; border-bottom-width: 5px; }
+.lf-screen .lf-fb-form button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.lf-fb-form .lf-go { font: 600 1.25rem/1 var(--display); }   /* keep the chunky key font, not the plain button font */

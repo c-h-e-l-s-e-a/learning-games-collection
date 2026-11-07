@@ -1,0 +1,303 @@
+/* ---------- Reading ---------- */
+*,*::before,*::after{box-sizing:border-box}
+:is(.app-r, .lf-pet){background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.4;-webkit-tap-highlight-color:transparent}
+:is(.app-r, .lf-pet) .app{max-width:34rem;margin-inline:auto;padding-inline:16px;padding-block:16px 40px}
+:is(.app-r, .lf-pet) .view{display:flex;flex-direction:column;gap:16px}
+:is(.app-r, .lf-pet) .vh{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+:is(.app-r, .lf-pet) button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+:is(.app-r, .lf-pet) button:focus-visible,:is(.app-r, .lf-pet) .page:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+:is(.app-r, .lf-pet) .v{color:var(--focus)}
+:is(.app-r, .lf-pet) .say{display:flex;align-items:center;justify-content:center;gap:14px}
+:is(.app-r, .lf-pet) .buddy{flex:none;display:inline-block;font-size:2.5rem;line-height:1}
+:is(.app-r, .lf-pet) .buddy.hop{animation:r-hop .45s ease}
+@keyframes r-hop{40%{transform:translateY(-24%) scale(1.08)}}
+:is(.app-r, .lf-pet) .bubble{position:relative;margin:0;min-width:0;padding:8px 14px;background:var(--key);border:2px solid var(--line);border-radius:16px;
+  font-size:1rem;font-weight:500;color:var(--ink);text-align:left;text-wrap:balance}
+:is(.app-r, .lf-pet) .bubble::before{content:"";position:absolute;left:-8px;top:50%;width:12px;height:12px;background:var(--key);
+  border-left:2px solid var(--line);border-bottom:2px solid var(--line);transform:translateY(-50%) rotate(45deg)}
+:is(.app-r, .lf-pet) .bubble.down{text-align:center}
+:is(.app-r, .lf-pet) .reward .say{min-height:3.7rem}
+:is(.app-r, .lf-pet) .game-say{min-height:3.6rem;margin-top:12px}
+:is(.app-r, .lf-pet) .game-say .buddy{font-size:3rem}
+:is(.app-r, .lf-pet) .bubble.down::before{left:50%;top:auto;bottom:-8px;transform:translateX(-50%) rotate(-45deg)}
+:is(.app-r, .lf-pet) .menu .say{padding-block:8px 4px}
+:is(.app-r, .lf-pet) .menu .buddy,:is(.app-r, .lf-pet) .themes .buddy{font-size:3.5rem}
+:is(.app-r, .lf-pet) .menu .bubble,:is(.app-r, .lf-pet) .themes .bubble{font-family:var(--display);font-weight:600;font-size:1.25rem}
+:is(.app-r, .lf-pet) .key{min-height:58px;padding:0 24px;display:inline-flex;align-items:center;justify-content:center;
+  font:600 1.25rem/1 var(--display);background:var(--key);color:var(--ink);
+  border:2px solid var(--key-edge);border-bottom-width:5px;border-radius:18px}
+:is(.app-r, .lf-pet) .key:active{transform:translateY(3px);border-bottom-width:2px}
+:is(.app-r, .lf-pet) .key.go{background:var(--accent);border-color:var(--accent-edge);color:var(--accent-ink)}
+:is(.app-r, .lf-pet) .key:disabled{opacity:.35;cursor:default}
+:is(.app-r, .lf-pet) .chip{min-height:44px;padding:0 16px;font:600 1rem/1 var(--display);background:var(--key);color:var(--ink-soft);
+  border:2px solid var(--line);border-radius:999px}
+:is(.app-r, .lf-pet) .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent-edge);color:var(--accent-ink)}
+:is(.app-r, .lf-pet) .cards{display:flex;flex-direction:column;gap:12px}
+:is(.app-r, .lf-pet) .card{display:flex;align-items:center;gap:16px;padding:14px 16px;text-align:left;min-width:0;
+  background:var(--key);border:2px solid var(--key-edge);border-bottom-width:5px;border-radius:22px}
+:is(.app-r, .lf-pet) .card:active,:is(.app-r, .lf-pet) .mini:active{transform:translateY(3px);border-bottom-width:2px}
+:is(.app-r, .lf-pet) .badge{flex:none;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;color:var(--face);
+  font:700 1.3rem/1 var(--read);padding-bottom:3px}
+:is(.app-r, .lf-pet) .badge.b1{background:var(--d1)}
+:is(.app-r, .lf-pet) .badge.b2{background:var(--d3)}
+:is(.app-r, .lf-pet) .badge.b3{background:var(--d5);font-size:1.05rem}
+:is(.app-r, .lf-pet) .badge.b4{background:var(--d6)}
+:is(.app-r, .lf-pet) .badge.b5{background:var(--d4);font-size:1.05rem}
+:is(.app-r, .lf-pet) .badge u{text-decoration:none;background:color-mix(in srgb,var(--key) 55%,transparent);border-radius:.15em;padding:0 .04em}
+:is(.app-r, .lf-pet) .card-level{font:600 .75rem/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+:is(.app-r, .lf-pet) .card-text{min-width:0;display:flex;flex-direction:column;gap:2px}
+:is(.app-r, .lf-pet) .card-name{font:600 1.375rem/1.2 var(--display)}
+:is(.app-r, .lf-pet) .card-sub{color:var(--ink-soft);font-size:.9375rem}
+:is(.app-r, .lf-pet) .minis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+:is(.app-r, .lf-pet) .mini{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 6px 10px;min-width:0;
+  background:var(--key);border:2px solid var(--key-edge);border-bottom-width:5px;border-radius:20px;
+  font:600 1rem/1.2 var(--display);text-align:center}
+:is(.app-r, .lf-pet) .mini-ico{height:40px;display:grid;place-items:center;font-size:1.9rem;line-height:1}
+:is(.app-r, .lf-pet) .mini-ico.aa{font:700 1.5rem/1 var(--read);color:var(--focus)}
+:is(.app-r, .lf-pet) .wheel{display:block;width:40px;height:40px;border-radius:50%;border:3px solid var(--key-edge)}
+:is(.app-r, .lf-pet) .theme-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+:is(.app-r, .lf-pet) .theme-tile{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:12px;text-align:left;border:2px solid;border-radius:18px;min-width:0}
+:is(.app-r, .lf-pet) .theme-tile[aria-pressed="true"]{box-shadow:0 0 0 2px var(--paper),0 0 0 5px var(--ink)}
+:is(.app-r, .lf-pet) .tile-top{display:flex;align-items:center;gap:8px;min-width:0}
+:is(.app-r, .lf-pet) .tile-emoji{font-size:1.75rem;line-height:1}
+:is(.app-r, .lf-pet) .tile-name{font:600 1.125rem/1.2 var(--display)}
+:is(.app-r, .lf-pet) .swatches{display:flex;gap:4px}
+:is(.app-r, .lf-pet) .swatches i{display:block;width:18px;height:18px;border-radius:50%}
+:is(.app-r, .lf-pet) .bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+:is(.app-r, .lf-pet) .bar h1,:is(.app-r, .lf-pet) .bar h2{font:600 1.4rem/1.2 var(--display);margin:0}
+:is(.app-r, .lf-pet) .back{height:40px;padding:0 16px 0 10px;display:flex;align-items:center;gap:4px;background:var(--key);
+  border:2px solid var(--line);border-radius:999px;font:600 1rem/1 var(--display)}
+:is(.app-r, .lf-pet) .back svg{width:18px;height:18px}
+:is(.app-r, .lf-pet) .options{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end}
+:is(.app-r, .lf-pet) .modes,:is(.app-r, .lf-pet) .sets,:is(.app-r, .lf-pet) .jump{display:flex;flex-wrap:wrap;gap:8px}
+:is(.app-r, .lf-pet) .group{display:flex;flex-direction:column;gap:6px;min-width:0}
+:is(.app-r, .lf-pet) .picker{flex:1 1 100%;display:flex;flex-direction:column;gap:10px;min-width:0}
+:is(.app-r, .lf-pet) .label{font-size:.75rem;font-weight:500;color:var(--ink-soft)}
+:is(.app-r, .lf-pet) .sets .chip{width:48px;padding:0 0 3px;font:700 1.5rem/1 var(--read);color:var(--focus)}
+:is(.app-r, .lf-pet) .sets .chip[aria-pressed="true"]{color:var(--accent-ink)}
+:is(.app-r, .lf-pet) .stage{position:relative;background:var(--key);border:2px solid var(--line);border-radius:28px;padding:16px 14px 22px;
+  display:flex;flex-direction:column;align-items:center;gap:14px;min-height:27rem}
+:is(.app-r, .lf-pet) .count{margin:0;align-self:flex-end;padding-right:6px;color:var(--ink-soft);font-weight:500;font-variant-numeric:tabular-nums}
+:is(.app-r, .lf-pet) .word{margin:0;font:400 clamp(5rem,30vw,10rem)/1.2 var(--read);letter-spacing:.04em;max-width:100%;text-align:center}
+:is(.app-r, .lf-pet) .word.w5{font-size:clamp(3.7rem,21vw,8rem)}
+:is(.app-r, .lf-pet) .word.long{font-size:clamp(2.3rem,10vw,3.8rem);line-height:1.4;letter-spacing:.02em;text-wrap:balance;padding-block:1.2rem .6rem}
+:is(.app-r, .lf-pet) .pic{min-height:clamp(6.5rem,26vw,9rem);min-width:9rem;max-width:100%;padding:0 14px;display:grid;place-items:center;align-content:center;gap:4px;
+  border-radius:22px;font-size:clamp(3.6rem,17vw,6rem);line-height:1.1;text-align:center}
+:is(.app-r, .lf-pet) .pic.hid{border:3px dashed var(--line);color:var(--ink-soft);font:600 2.5rem/1 var(--display)}
+:is(.app-r, .lf-pet) .pic .phrase{font:400 clamp(1.8rem,7.5vw,2.6rem)/1.3 var(--read)}
+:is(.app-r, .lf-pet) .pic .emo{font-size:clamp(3rem,13vw,4.5rem)}
+:is(.app-r, .lf-pet) .pic.pop > span{animation:r-pop .3s ease-out}
+@keyframes r-pop{from{transform:scale(.6)}to{transform:scale(1)}}
+:is(.app-r, .lf-pet) .scene{position:relative;display:block;width:6em;height:3.4em;font-size:clamp(2.4rem,12vw,4.2rem);flex:none}
+:is(.app-r, .lf-pet) .scene i{position:absolute;font-style:normal;line-height:1;white-space:nowrap}
+:is(.app-r, .lf-pet) .scene i.zip{width:1em;height:.6em;opacity:.7;background:
+  linear-gradient(var(--ink-soft),var(--ink-soft)) 0 0/100% .09em no-repeat,
+  linear-gradient(var(--ink-soft),var(--ink-soft)) 0 50%/58% .09em no-repeat,
+  linear-gradient(var(--ink-soft),var(--ink-soft)) 0 100%/80% .09em no-repeat}
+:is(.app-r, .lf-pet) .pic.pop > span.scene{animation:none}
+:is(.app-r, .lf-pet) .pic.pop .scene i{animation:r-land .4s cubic-bezier(.2,1.5,.4,1) both;animation-delay:calc(var(--n) * 140ms)}
+@keyframes r-land{from{opacity:0;scale:.3}}
+:is(.app-r, .lf-pet) .wall .scene{font-size:1.1rem}
+:is(.app-r, .lf-pet) .acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:auto;position:relative}
+:is(.app-r, .lf-pet) .acts .go{min-width:11rem}
+:is(.app-r, .lf-pet) .toprow{position:relative;z-index:1;width:100%;display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+:is(.app-r, .lf-pet) .pals{display:flex;flex-wrap:wrap;gap:8px 16px;min-width:0;padding:14px 0 0 8px}
+:is(.app-r, .lf-pet) .palcard{display:flex;flex-direction:column;align-items:center;gap:5px}
+:is(.app-r, .lf-pet) .duo{position:relative;display:flex}
+:is(.app-r, .lf-pet) .duo b{display:grid;place-items:center;width:2.1rem;height:2.5rem;padding-bottom:4px;border-radius:10px;background:var(--slot);
+  font:700 1.5rem/1 var(--read);color:var(--focus)}
+:is(.app-r, .lf-pet) .duo b:first-of-type{transform:rotate(8deg);margin-right:-3px}
+:is(.app-r, .lf-pet) .duo b:last-of-type{transform:rotate(-8deg)}
+:is(.app-r, .lf-pet) .duo i{position:absolute;left:50%;top:-1rem;margin-left:-.55rem;width:1.1rem;text-align:center;font-style:normal;font-size:1.05rem;line-height:1}
+:is(.app-r, .lf-pet) .palcard small{font-size:.75rem;font-weight:500;color:var(--ink-soft)}
+:is(.app-r, .lf-pet) .pals.yay .duo{animation:r-hop .5s ease}
+:is(.app-r, .lf-pet) .wd{white-space:nowrap}
+:is(.app-r, .lf-pet) .pal{display:inline-block;line-height:1;color:var(--focus);background:var(--slot);border-radius:.16em;padding:.02em .05em .08em;margin:0 .03em}
+:is(.app-r, .lf-pet) .kinds-row{display:flex;flex-wrap:wrap;gap:8px}
+:is(.app-r, .lf-pet) .chip.meet{border-style:dashed}
+:is(.app-r, .lf-pet) .sets .chip.all{width:auto;padding:0 16px;font:600 1rem/1 var(--display);color:var(--ink-soft)}
+:is(.app-r, .lf-pet) .sets .chip.all[aria-pressed="true"]{color:var(--accent-ink)}
+:is(.app-r, .lf-pet) .intro-title{margin:6px 0 0;font:700 1.6rem/1.2 var(--display);text-align:center;text-wrap:balance}
+:is(.app-r, .lf-pet) .kinds{width:100%;display:flex;flex-direction:column;gap:10px}
+:is(.app-r, .lf-pet) .kindcard{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:6px 18px;padding:20px 16px 12px;text-align:left;min-width:0;
+  background:var(--paper);border:2px solid var(--line);border-bottom-width:5px;border-radius:18px}
+:is(.app-r, .lf-pet) .kindcard:active{transform:translateY(3px);border-bottom-width:2px}
+:is(.app-r, .lf-pet) .kind-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+:is(.app-r, .lf-pet) .kind-name{font:600 1.25rem/1.2 var(--display)}
+:is(.app-r, .lf-pet) .kind-line{color:var(--ink-soft);font-size:.95rem;line-height:1.35}
+:is(.app-r, .lf-pet) .kind-eg{margin-top:6px;display:flex;align-items:center;gap:10px;font:400 1.7rem/1.2 var(--read)}
+:is(.app-r, .lf-pet) .kind-eg b{font-weight:400}
+:is(.app-r, .lf-pet) .kind-eg i{font-style:normal;font-size:1.6rem;line-height:1}
+:is(.app-r, .lf-pet) .intro-hint{margin:-4px 0 0;color:var(--ink-soft);font-size:.95rem;text-align:center}
+:is(.app-r, .lf-pet) .lists h4{margin:4px 0 -4px;display:flex;align-items:baseline;gap:8px}
+:is(.app-r, .lf-pet) .lists h4 b{font:700 1.5rem/1 var(--read);color:var(--focus)}
+:is(.app-r, .lf-pet) .lists{display:flex;flex-direction:column;gap:30px}
+:is(.app-r, .lf-pet) .lists section{display:flex;flex-direction:column;gap:12px;scroll-margin-top:12px}
+:is(.app-r, .lf-pet) .lists h2{font:600 1.35rem/1.2 var(--display);margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+:is(.app-r, .lf-pet) .lists h3{font:500 1rem/1.2 var(--body);color:var(--ink-soft);margin:6px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+:is(.app-r, .lf-pet) .lists h3 b{font:700 1.7rem/1 var(--read);color:var(--focus)}
+:is(.app-r, .lf-pet) .lists small{font:500 .95rem/1.2 var(--body);color:var(--ink-soft);font-variant-numeric:tabular-nums}
+:is(.app-r, .lf-pet) .lists .wall li{background:var(--key);border:1px solid var(--line)}
+:is(.app-r, .lf-pet) .done-title{font:700 clamp(1.9rem,8vw,2.5rem)/1.15 var(--display);margin:6px 0 0;text-align:center;text-wrap:balance;color:var(--good)}
+:is(.app-r, .lf-pet) .done-sub{margin:-8px 0 0;color:var(--ink-soft);font-weight:500;text-align:center;text-wrap:balance}
+:is(.app-r, .lf-pet) .wall{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(5.4rem,1fr));gap:8px;width:100%}
+:is(.app-r, .lf-pet) .wall li{display:grid;justify-items:center;align-content:center;padding:8px 4px 10px;border-radius:16px;background:var(--paper);font-size:2rem;line-height:1.2;min-width:0}
+:is(.app-r, .lf-pet) .wall b{font:400 1.7rem/1.2 var(--read)}
+:is(.app-r, .lf-pet) .wall.rows{grid-template-columns:1fr}
+:is(.app-r, .lf-pet) .wall.rows li{grid-template-columns:auto minmax(0,1fr);justify-items:start;align-items:center;gap:12px;padding:8px 14px;font-size:1.5rem}
+:is(.app-r, .lf-pet) .wall.rows b{font-size:1.35rem;line-height:1.35}
+:is(.app-r, .lf-pet) .confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none;border-radius:26px}
+:is(.app-r, .lf-pet) .confetti i{position:absolute;top:-24px;width:10px;height:16px;border-radius:3px;animation:r-fall 2.6s ease-in both}
+@keyframes r-fall{to{transform:translateY(70rem) rotate(600deg);opacity:0}}
+:is(.app-r, .lf-pet) .reward{position:relative;width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;padding:14px 10px 12px;border-radius:22px;background:var(--paper)}
+:is(.app-r, .lf-pet) .pen{min-height:6.8rem;width:100%;display:flex;align-items:flex-end;justify-content:center;gap:.3rem;padding-bottom:4px}
+:is(.app-r, .lf-pet) .pet{display:inline-block;line-height:1.1;transition:font-size .45s cubic-bezier(.2,1.6,.4,1)}
+:is(.app-r, .lf-pet) .pet.chomp{animation:r-chomp .35s ease}
+@keyframes r-chomp{30%{transform:scale(1.18,.82)}60%{transform:scale(.92,1.1)}}
+:is(.app-r, .lf-pet) .pet.rumble{animation:r-rumble .14s linear 7}
+@keyframes r-rumble{25%{transform:translateX(-4px) rotate(-5deg)}75%{transform:translateX(4px) rotate(5deg)}}
+:is(.app-r, .lf-pet) .plop{display:inline-block;font-size:2.2rem;line-height:1.1}
+:is(.app-r, .lf-pet) .plop.mega{font-size:5rem}
+:is(.app-r, .lf-pet) .plop.out{animation:r-plop .5s cubic-bezier(.2,1.7,.4,1)}
+@keyframes r-plop{from{transform:translateY(-1.2em) scale(.2);opacity:0}}
+:is(.app-r, .lf-pet) .tray,:is(.app-r, .lf-pet) .picks{display:flex;gap:10px;justify-content:center;min-height:68px}
+:is(.app-r, .lf-pet) .snack,:is(.app-r, .lf-pet) .pick-st{width:68px;height:68px;min-height:0;padding:0;font-size:2.1rem;font-family:inherit}
+:is(.app-r, .lf-pet) .snack.gone{visibility:hidden}
+:is(.app-r, .lf-pet) .pick-st[aria-pressed="true"]{background:var(--accent);border-color:var(--accent-edge)}
+.fly{position:fixed;z-index:9;font-size:2.1rem;line-height:1;pointer-events:none;transform:translate(-50%,-50%);
+  transition:transform .45s cubic-bezier(.5,0,.7,1),opacity .45s}
+:is(.app-r, .lf-pet) .pile{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 12px;min-height:44px}
+:is(.app-r, .lf-pet) .poos{display:inline-block;font-size:1.4rem;line-height:1;font-weight:600;font-family:var(--display)}
+:is(.app-r, .lf-pet) .poos.whoosh{animation:r-whoosh .6s ease-in forwards}
+@keyframes r-whoosh{to{transform:rotate(540deg) scale(0);opacity:0}}
+:is(.app-r, .lf-pet) .page{position:relative;width:100%;aspect-ratio:4/3;border-radius:18px;overflow:hidden;border:2px solid var(--line);container-type:inline-size;
+  background:linear-gradient(to bottom,color-mix(in srgb,var(--d5) 32%,var(--key)) 0 60%,color-mix(in srgb,var(--d4) 50%,var(--key)) 60% 100%)}
+:is(.app-r, .lf-pet) .page i{position:absolute;font-style:normal;line-height:1;font-size:2.2rem;font-size:11cqw;pointer-events:none;
+  transform:translate(-50%,-50%) rotate(var(--r,0deg))}
+:is(.app-r, .lf-pet) .page i.new{animation:r-stick .35s cubic-bezier(.2,1.6,.4,1)}
+@keyframes r-stick{from{scale:2;opacity:0}}
+:is(.app-r, .lf-pet) .page.armed{cursor:copy;border-style:dashed;border-color:var(--focus)}
+:is(.app-r, .lf-pet) .page .empty{position:absolute;inset:auto 0 12% 0;margin:0;text-align:center;color:var(--ink-soft);font-weight:500;padding-inline:16px}
+/* Reading: the path of four stops, stars, tabs inside a stop, magic e, the intros and the story shelf */
+.app-r{min-height:calc(100% - var(--foot-h, 56px))}
+.app-r .read-count{margin:-6px 0 0;align-self:center;padding:6px 14px;border-radius:999px;background:var(--key);border:2px solid var(--line);
+  font:600 1rem/1.2 var(--display);color:var(--ink-soft)}
+.app-r .read-count b{color:var(--ink);font-variant-numeric:tabular-nums}
+/* the dashed track runs behind the badges and shows in the gaps between cards */
+.app-r .path{list-style:none;margin:0;padding:0;position:relative;display:flex;flex-direction:column;gap:18px}
+.app-r .path::before{content:"";position:absolute;left:51px;top:40px;bottom:40px;border-left:4px dashed var(--line)}
+.app-r .path li{position:relative}
+.app-r .card.stop{position:relative;width:100%}
+.app-r .card.stop .card-sub{font-size:.9rem;line-height:1.3}
+.app-r .card.next{border-color:var(--accent-edge);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 45%,transparent)}
+.app-r .next-tag{position:absolute;top:-11px;right:14px;z-index:1;padding:4px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);
+  border:2px solid var(--accent-edge);font:600 .8rem/1 var(--display);white-space:nowrap}
+.app-r .badge.s1{background:var(--d1)}
+.app-r .badge.s2{background:var(--d6)}
+.app-r .badge.s3{background:var(--d3)}
+.app-r .badge.s4{background:var(--d5)}
+.app-r .stars{display:flex;gap:4px;margin-top:5px}
+.app-r .star{display:inline-flex}
+.app-r .star svg{width:20px;height:20px;display:block}
+.app-r .star path{fill:none;stroke:var(--line);stroke-width:2;stroke-linejoin:round}
+.app-r .star.on path{fill:var(--accent);stroke:var(--accent-edge)}
+.app-r .minis{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+/* the four parts of a stop: the star sits above each label so four fit across a phone */
+.app-r .tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px;background:var(--key);border:2px solid var(--line);border-radius:20px}
+.app-r .tab{min-height:52px;min-width:0;padding:6px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border:0;border-radius:15px;background:none;
+  font:600 .875rem/1.1 var(--display);color:var(--ink-soft);text-align:center;text-wrap:balance}
+.app-r .tab .star svg{width:16px;height:16px}
+.app-r .tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.app-r .tab[aria-selected="true"] .star path{stroke:var(--accent-ink)}
+.app-r .tab[aria-selected="true"] .star.on path{fill:var(--accent-ink);stroke:var(--accent-ink)}
+
+/* magic e: quiet, pale, with a sparkle */
+.app-r .me{position:relative;display:inline-block;color:var(--ink-soft);opacity:.8}
+.app-r .me::after{content:"✨";position:absolute;right:-.28em;top:-.12em;font-size:.36em;line-height:1;opacity:1}
+.app-r .me.pop{animation:r-epop .7s cubic-bezier(.2,1.6,.4,1)}
+@keyframes r-epop{from{transform:translateY(-.7em) scale(.2) rotate(-120deg);opacity:0}}
+.app-r .blank{color:var(--ink-soft);margin:0 .02em}
+.app-r .chip .me::after,.app-r .vcard .big .me::after{display:none}
+.app-r .sets .chip.wide{width:auto;min-width:48px;padding:0 12px 3px}
+
+/* intros */
+.app-r .sandwich{margin:2px 0 0;display:flex;align-items:center;gap:.06em;font:400 4.2rem/1 var(--read)}
+.app-r .sandwich b{font-weight:400;display:grid;place-items:center;min-width:.9em;padding:.06em .16em .16em;border-radius:.35em .35em .2em .2em;
+  background:#E7C48C;color:#5B3A14;box-shadow:inset 0 -.08em 0 #C99A55}
+.app-r .sandwich b.fill{border-radius:.2em;background:color-mix(in srgb,var(--d4) 60%,var(--key));color:var(--focus);box-shadow:none}
+.app-r .spell{margin:2px 0 0;display:flex;align-items:center;gap:14px;font:400 3.4rem/1.1 var(--read)}
+.app-r .spell i{font-style:normal;font-size:2rem}
+.app-r .vgrid{width:100%;display:grid;grid-template-columns:repeat(auto-fill,minmax(5.6rem,1fr));gap:10px}
+.app-r .vcard{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px 10px;min-width:0;
+  background:var(--paper);border:2px solid var(--line);border-bottom-width:5px;border-radius:18px}
+.app-r .vcard:active{transform:translateY(3px);border-bottom-width:2px}
+.app-r .vcard b.big{font:700 1.9rem/1.1 var(--read);color:var(--focus)}
+.app-r .vcard i{font-style:normal;font-size:1.8rem;line-height:1.1}
+.app-r .vcard .eg{font:400 1.45rem/1.2 var(--read)}
+.app-r .kindcard .duo{margin-top:6px}
+.app-r .newwords{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 14px 14px;border-radius:18px;
+  background:var(--paper);border:2px dashed var(--line)}
+.app-r .newwords p{margin:0;font:400 1.35rem/1.45 var(--read);text-align:center;text-wrap:balance}
+
+/* stories */
+.app-r .shelf{display:flex;flex-direction:column;gap:22px}
+.app-r .shelf-row{display:flex;flex-direction:column;gap:12px}
+.app-r .shelf-row h3{margin:0;font:600 1.15rem/1.2 var(--display);display:flex;align-items:center;gap:8px}
+.app-r .books{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.app-r .book{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 12px;min-width:0;text-align:center;
+  background:var(--key);border:2px solid var(--key-edge);border-bottom-width:5px;border-radius:20px}
+.app-r .book:active{transform:translateY(3px);border-bottom-width:2px}
+.app-r .book .scene{font-size:1.45rem}
+.app-r .book-title{font:400 1.25rem/1.25 var(--read);text-wrap:balance}
+.app-r .book-meta{font-size:.85rem;font-weight:500;color:var(--ink-soft)}
+.app-r .book.ready{border-color:var(--accent-edge);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 45%,transparent)}
+.app-r .stage .book{background:var(--paper);border-color:var(--line)}
+.app-r .stage .book.ready{border-color:var(--accent-edge)}
+.app-r .story-title{margin:6px 0 0;font:400 clamp(2.2rem,10vw,3.2rem)/1.2 var(--read);text-align:center;text-wrap:balance}
+.app-r .wall.duos{grid-template-columns:repeat(auto-fill,minmax(10rem,1fr))}
+.app-r .wall.duos li{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 8px;font-size:1.6rem}
+.app-r .wall.duos b{font-size:1.5rem}
+.app-r .wall.duos i{font-style:normal;font-size:1rem;color:var(--ink-soft)}
+.app-r .lists .wall .me::after,.app-r .wall .me::after{font-size:.42em}
+@media (prefers-reduced-motion: reduce){
+  .app-r .me.pop{animation:none}
+  .app-r .vcard:active,.app-r .book:active{transform:none}
+}
+/* the poop pile: the newest poops drop in beside the flush button */
+.lf-pet .poos i,.app-r .poos i{font-style:normal;display:inline-block}
+.lf-pet .poos i.out,.app-r .poos i.out{animation:r-plop .5s cubic-bezier(.2,1.7,.4,1) both}
+@media (prefers-reduced-motion: reduce){ .lf-pet .poos i.out,.app-r .poos i.out{animation:none} }
+/* after Words: the buddy's haiku or joke, in the reading font so it is more to read */
+.app-r .reward.talk{gap:6px;padding-block:16px 16px}
+.app-r .reward.talk{padding-inline:6px}
+.app-r .talk .bubble{align-self:stretch;display:flex;flex-direction:column;gap:2px;padding:12px 14px 14px;font:400 clamp(1.05rem,5vw,1.3rem)/1.35 var(--read);text-align:left;text-wrap:pretty}
+.app-r .talk-label{font:600 .85rem/1.3 var(--display);color:var(--ink-soft);margin-bottom:4px}
+.app-r .verse{display:block;padding-left:1.2em;text-indent:-1.2em}
+.app-r .joke-a{display:block;margin-top:8px;font-weight:700;color:var(--focus)}
+.app-r .joke-a:not([hidden]){animation:r-pop .3s ease-out}
+.app-r .talk .pet{font-size:4.2rem;margin-top:6px}
+.app-r .talk .key{min-width:9rem}
+/* after a story: a tappable sky */
+.app-r .sky{display:block;width:100%;height:15rem;border-radius:16px;cursor:pointer;touch-action:manipulation}
+.app-r .sky-fireworks{background:linear-gradient(#0E1433,#2A2F66)}
+.app-r .sky-bubbles{background:linear-gradient(var(--key),var(--paper))}
+.app-r .sky-confetti{background:var(--key)}
+@media (prefers-reduced-motion: reduce){ .app-r .joke-a:not([hidden]){animation:none} }
+/* Magic e: the same word without its e, small, under the big word */
+.app-r .bare{margin:-6px 0 0;display:flex;align-items:center;gap:8px;padding:5px 14px 6px;border-radius:999px;background:var(--paper);border:2px dashed var(--line)}
+.app-r .bare-label{font:500 .8rem/1.2 var(--body);color:var(--ink-soft)}
+.app-r .bare-word{font:400 1.9rem/1.1 var(--read)}
+.app-r .bare-pic{font-size:1.6rem;line-height:1}
+@media (prefers-reduced-motion: reduce){:is(.app-r, .lf-pet) .pic.pop > span,:is(.app-r, .lf-pet) .pic.pop .scene i,:is(.app-r, .lf-pet) .buddy.hop,:is(.app-r, .lf-pet) .pals.yay .duo,:is(.app-r, .lf-pet) .pet.chomp,:is(.app-r, .lf-pet) .pet.rumble,:is(.app-r, .lf-pet) .plop.out,:is(.app-r, .lf-pet) .page i.new,:is(.app-r, .lf-pet) .poos.whoosh{animation:none}
+:is(.app-r, .lf-pet) .pet,.fly{transition:none}
+:is(.app-r, .lf-pet) .confetti{display:none}
+:is(.app-r, .lf-pet) .key:active,:is(.app-r, .lf-pet) .card:active,:is(.app-r, .lf-pet) .mini:active,:is(.app-r, .lf-pet) .kindcard:active{transform:none}}
+
+/* common words: a heart over the tricky part of a heart word, and a label saying which kind of word it is */
+.app-r .heart{position:relative;display:inline-block;line-height:1;background:color-mix(in srgb,var(--d3) 30%,var(--key));
+  border-radius:.16em;padding:.02em .05em .08em;margin:0 .03em}
+.app-r .heart::after{content:"❤️";position:absolute;left:50%;top:-.36em;transform:translateX(-50%);font-size:.3em;line-height:1}
+.app-r .ctag{margin:0;padding:4px 12px;border-radius:999px;background:var(--paper);border:2px solid var(--line);
+  font:600 .9375rem/1.2 var(--display);color:var(--ink-soft)}
+.app-r .ctag.hearty{border-color:color-mix(in srgb,var(--d3) 55%,var(--line));color:var(--ink)}

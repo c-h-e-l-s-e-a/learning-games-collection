@@ -1,0 +1,173 @@
+/* Layout: one narrow column on a plain soft ground. A home screen leads to three sections
+   (maths, reading, flags) that share one theme, one buddy and one set of chunky controls. */
+:root {
+  --paper: #EAF6F1;
+  --ink: #173A3F;
+  --ink-soft: #527678;
+  --key: #FFFFFF;
+  --key-edge: #B7D2CA;
+  --line: #C3DCD5;
+  --accent: #FFC93C;
+  --accent-edge: #D99F00;
+  --accent-ink: #173A3F;
+  --slot: #FFE9A6;
+  --good: #1A8754;
+  --bad: #C43D27;
+  --focus: #2F6FED;
+  --face: #173A3F;
+  --d1: #26A69A; --d2: #FFB703; --d3: #FF7F5C; --d4: #7CB342; --d5: #4FA3E0; --d6: #A98BDB;
+  --display: "Fredoka", "Trebuchet MS", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --body: "Lexend", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --read: "Andika", "Century Gothic", "Comic Sans MS", sans-serif; /* single-storey a and g for early readers */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14292C; --ink: #EAF6F1; --ink-soft: #9DBDB9; --key: #1F3C40; --key-edge: #0C1B1D;
+    --line: #34575B; --accent: #FFD466; --accent-edge: #A87C12; --accent-ink: #20290F;
+    --slot: #2A4A4D; --good: #8FE3AC; --bad: #FFA08E; --focus: #9CC2FF; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14292C; --ink: #EAF6F1; --ink-soft: #9DBDB9; --key: #1F3C40; --key-edge: #0C1B1D;
+  --line: #34575B; --accent: #FFD466; --accent-edge: #A87C12; --accent-ink: #20290F;
+  --slot: #2A4A4D; --good: #8FE3AC; --bad: #FFA08E; --focus: #9CC2FF; color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.35;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Home and theme screens */
+.lf-screen {
+  width: 100%; max-width: 440px; margin-inline: auto;
+  padding-inline: 16px; padding-block: 16px 32px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.lf-home { justify-content: center; }
+.lf-home > .lf-cards { margin-bottom: auto; }
+/* the first visit opens on the buddy picker, with a big title and a Let's go button that appears once a buddy is picked */
+.lf-title { margin: 4px 0 0; font: 700 1.75rem/1.2 var(--display); text-align: center; text-wrap: balance; }
+.lf-go-wrap { position: sticky; bottom: 0; margin-top: -4px; padding-block: 12px 4px;
+  background: linear-gradient(to bottom, transparent, var(--paper) 35%); }
+.lf-go { width: 100%; min-height: 58px; font: 600 1.25rem/1 var(--display); color: var(--accent-ink); background: var(--accent);
+  border: 2px solid var(--accent-edge); border-bottom-width: 5px; border-radius: 18px; }
+.lf-go:active { transform: translateY(3px); border-bottom-width: 2px; }
+/* My buddy: a small button in the top left corner, apart from the games */
+.lf-top { display: flex; align-items: center; }
+.lf-mybuddy { height: 44px; padding: 0 14px 0 4px; display: flex; align-items: center; gap: 8px;
+  background: var(--key); border: 2px solid var(--line); border-radius: 999px; font: 600 1rem/1 var(--display); }
+.lf-mybuddy:active { transform: translateY(2px); }
+.lf-mybuddy .lf-wheel { width: 32px; height: 32px; border-width: 2px; display: grid; place-items: center; }
+.lf-wheel-buddy { font-size: 1.15rem; line-height: 1; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+/* the cards stay centred; the copyright mark sits in the bottom right corner */
+.lf-home > .lf-say { margin-top: auto; }
+/* quiet: halfway between the soft text colour and the background, so it is there without catching the eye */
+.lf-mark { margin-top: auto; display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+  color: var(--line); color: color-mix(in srgb, var(--ink-soft) 50%, var(--paper)); }
+.lf-copy { margin: 0; text-align: right; font-size: 0.75rem; line-height: 1.35; }
+.lf-logo { flex: none; width: 34px; height: 29px; overflow: visible; }
+.lf-logo path { fill: none; stroke-width: 2.6; stroke-linecap: round; }
+.lf-logo-c { stroke: currentColor; }
+.lf-logo-smile { stroke: currentColor; }
+.lf-screen button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+.lf-screen button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.lf-vh {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.lf-say { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.lf-buddy { flex: none; display: inline-block; font-size: 3.5rem; line-height: 1; }
+.lf-buddy.hop { animation: lf-hop 0.45s ease; }
+@keyframes lf-hop { 40% { transform: translateY(-24%) scale(1.08); } }
+.lf-bubble {
+  position: relative; margin: 0; min-width: 0; padding: 8px 14px;
+  background: var(--key); border: 2px solid var(--line); border-radius: 16px;
+  font: 600 1.25rem/1.25 var(--display); color: var(--ink); text-wrap: balance;
+}
+.lf-bubble::before {
+  content: ""; position: absolute; left: -8px; top: 50%; width: 12px; height: 12px;
+  background: var(--key); border-left: 2px solid var(--line); border-bottom: 2px solid var(--line);
+  transform: translateY(-50%) rotate(45deg);
+}
+/* home: a little helper buddy at the top with its bubble beside it. It waves now and then
+   to invite a tap, and a tap (on it or its bubble) gets a tip about something in the app. */
+.lf-home { padding-block: 12px 14px; gap: 12px; }
+.lf-home > .lf-say { justify-content: flex-start; gap: 12px; }
+.lf-buddy-btn { flex: none; padding: 2px; border: 0; background: none; line-height: 1; border-radius: 50%; }
+.lf-home .lf-buddy { font-size: 2.75rem; transform-origin: 50% 85%; }
+.lf-home .lf-buddy.hop { animation: lf-hop 0.45s ease; }
+.lf-home .lf-buddy.wave { animation: lf-wave 1.1s ease; }
+@keyframes lf-wave {
+  15% { transform: rotate(-14deg) scale(1.1); } 35% { transform: rotate(12deg) scale(1.1); }
+  55% { transform: rotate(-8deg); } 75% { transform: rotate(5deg); }
+}
+.lf-home .lf-bubble {
+  flex: 1; display: flex; align-items: center; min-height: calc(2.5em + 18px); padding: 6px 12px;
+  font-size: 1rem; cursor: pointer;
+}
+.lf-cards { display: flex; flex-direction: column; gap: 8px; }
+.lf-card {
+  display: flex; align-items: center; gap: 12px; padding: 9px 12px; text-align: left;
+  background: var(--key); border: 2px solid var(--key-edge); border-bottom-width: 5px; border-radius: 22px;
+}
+.lf-card:active { transform: translateY(3px); border-bottom-width: 2px; }
+.lf-badge {
+  flex: none; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--b); color: var(--face); font: 600 1.25rem/1 var(--display);
+}
+.lf-badge.read { font: 700 1.375rem/1 var(--read); padding-bottom: 4px; }
+.lf-badge.emo { font-size: 1.75rem; }
+.lf-wheel { flex: none; width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--key-edge); }
+.lf-card-text { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.lf-card-name { font: 600 1.25rem/1.2 var(--display); }
+.lf-card-sub { color: var(--ink-soft); font-size: 0.875rem; }
+.lf-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.lf-back {
+  height: 40px; padding: 0 16px 0 10px; display: flex; align-items: center; gap: 4px;
+  background: var(--key); border: 2px solid var(--line); border-radius: 999px; font: 600 1rem/1 var(--display);
+}
+.lf-back svg { width: 18px; height: 18px; }
+.lf-theme-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.lf-tile {
+  min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  padding: 12px; text-align: left; border: 2px solid; border-radius: 18px;
+}
+.lf-tile[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--paper), 0 0 0 5px var(--ink); }
+.lf-tile-top { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.lf-tile-emoji { font-size: 1.75rem; line-height: 1; }
+.lf-tile-name { font: 600 1.125rem/1.2 var(--display); }
+.lf-swatches { display: flex; gap: 4px; }
+.lf-swatches i { display: block; width: 18px; height: 18px; border-radius: 50%; }
+@media (prefers-reduced-motion: reduce) {
+  .lf-buddy.hop, .lf-home .lf-buddy, .lf-home .lf-buddy.hop, .lf-home .lf-buddy.wave { animation: none; }
+  .lf-card:active, .lf-go:active, .lf-mybuddy:active { transform: none; }
+}
+
+/* the feedback link sits quietly on the left of the footer, across from the copyright */
+.lf-fb-link { margin-right: auto; padding: 6px 2px; background: none; border: 0; border-radius: 6px;
+  font: 500 0.875rem/1.2 var(--body); color: var(--ink-soft); text-decoration: underline; text-underline-offset: 3px; }
+
+/* On/off switches: a cross under the switch when it is off, a tick when it is on,
+   so children who can't read "on" and "off" can still tell. Used by Timed (maths) and Look-alikes (flags). */
+.sw-col { flex: none; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.onoff { display: block; width: 20px; height: 20px; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.onoff .off { stroke: var(--bad); }
+.onoff .on { stroke: var(--good); display: none; }
+[aria-checked="true"] .onoff .on, [aria-pressed="true"] .onoff .on { display: inline; }
+[aria-checked="true"] .onoff .off, [aria-pressed="true"] .onoff .off { display: none; }
+
+/* the footer under every screen: feedback on the left, the copyright and logo on the right.
+   Every screen is at least as tall as the window minus the footer (--foot-h), so the footer sits at the
+   bottom of the window on short screens and straight after the content on long ones. Each section's own
+   stylesheet sizes its outer box this way: .lf-screen here, .app-m, .app-r, .app-c, .app-z and .app-f there. */
+:root { --foot-h: 56px; }
+.lf-screen { min-height: calc(100% - var(--foot-h, 56px)); }
+/* the same width on every screen: across the whole window (up to the zoo's widest), so it never moves */
+.lf-foot { width: 100%; max-width: 1320px; min-height: var(--foot-h); margin: 0 auto;
+  padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); padding-block: 8px 14px; }
+.lf-foot button { font: inherit; cursor: pointer; touch-action: manipulation; }
+.lf-foot .lf-fb-link { font: 500 0.875rem/1.2 var(--body); color: var(--ink-soft); }
+.lf-foot button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
