@@ -5,7 +5,7 @@
    The first message sent from the live site makes FormSubmit email you an "Activate Form" button.
    That email also gives you a random alias: put the alias here instead of your address,
    so your real address isn't visible in the page source. */
-var FEEDBACK_TO = "";
+var FEEDBACK_TO = "chelsea.corvus@gmail.com";
 
 (function () {
   var $ = function (id) { return document.getElementById(id); };
