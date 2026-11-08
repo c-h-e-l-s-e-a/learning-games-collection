@@ -154,7 +154,7 @@ var LF = (function () {
   var TIPS = [
     'Tip: in Multiplication, tap the dots to turn them around.',
     'Tip: tap a number in a times sum to split it into parts.',
-    'Tip: switch on ⏱️ Timed before a maths game to race the clock.',
+    'Tip: switch on ⏱️ Timed before a maths game to see your time at the end.',
     'Tip: in Division, tap the dots to share them out.',
     'Tip: Number play can chunk a number into equal groups.',
     'Tip: in Flags, get a flag right 3 times in a row to learn it.',

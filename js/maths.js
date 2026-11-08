@@ -190,7 +190,7 @@
   var stats = { times: { solved: 0, ms: 0 }, divide: { solved: 0, ms: 0 }, plus: { solved: 0, ms: 0 }, minus: { solved: 0, ms: 0 } };
   /* division: the numbers to divide by, and the answers to practise */
   var divBy = [2], divAns = ALL.slice();
-  /* Timed, kept for each game: on = a stopwatch runs and the game goes straight on after a right answer;
+  /* Timed, kept for each game: on = the time is kept (and only shown at the end) and the game goes straight on after a right answer;
      off = no clock, and the game stops for a look (dots or number line) after each answer.
      Stored as "speed", its old name, so earlier settings carry over. */
   var speed = { times: false, divide: false, plus: false, minus: false };
@@ -287,7 +287,6 @@
     stopParty();
     $('finish').hidden = true;
     stopClock();
-    stopTick();
   }
   /* the game and Number play fill the window; the menu and setup pages grow with their content */
   function fillWindow(on) { $('app-m').classList.toggle('fill', on); }
@@ -353,7 +352,7 @@
   function renderTimed() {
     var on = speed[mode];
     $('timed').setAttribute('aria-checked', on ? 'true' : 'false');
-    $('timed-sub').textContent = on ? 'On: a clock runs, and it’s straight on to the next question.'
+    $('timed-sub').textContent = on ? 'On: straight on to the next question, and your time shows at the end.'
       : hasLine() ? 'Off: take your time, with a number line after each answer.'
       : 'Off: take your time, with a look at the dots after each answer.';
   }
@@ -373,13 +372,10 @@
     $('game').hidden = false;
     fillWindow(true);
     $('qop').textContent = SIGN[m];
-    $('clock').hidden = !speed[m];
     renderTally();
-    renderClock();
     q = null;
     buildDeck();
     nextQuestion();
-    if (speed[m]) startTick();
     window.scrollTo(0, 0);
   }
 
@@ -416,8 +412,7 @@
     $('question').setAttribute('aria-label', q.a + ' ' + WORD[mode] + ' ' + q.b + ' equals');
     $('go').textContent = 'Check';
     /* the hint only shows until the first correct answer; after that the line stays quiet */
-    setMsg(stats[mode].solved > 0 ? '' : speed[mode] ? 'The clock is running! Tap the answer, then press Check.'
-      : 'Tap the answer, then press Check.', '');
+    setMsg(stats[mode].solved > 0 ? '' : 'Tap the answer, then press Check.', '');
     renderSlot('');
     $('cheer-emoji').hidden = true;
     $('cheer-emoji').textContent = '';
@@ -657,22 +652,14 @@
   }
 
   /* ---------- Finish line: a party when the round's questions are all solved ---------- */
-  /* The clock only runs while a question is waiting for an answer. In a timed game it shows in the
-     bar as a stopwatch and on the finish screen; untimed games don't show it at all. */
+  /* The clock only runs while a question is waiting for an answer. It is never shown during a game,
+     so there's no countdown pressure; a timed game shows the total on the finish screen only. */
   function startClock() { if (!clock) clock = Date.now(); }
   function stopClock() {
     var st = stats[mode];
     if (clock && st) st.ms = (st.ms || 0) + (Date.now() - clock);
     clock = 0;
   }
-  var tick = 0;
-  function clockMs() { var st = stats[mode]; return st ? (st.ms || 0) + (clock ? Date.now() - clock : 0) : 0; }
-  function renderClock() {
-    var t = Math.floor(clockMs() / 1000);
-    $('clock-time').textContent = Math.floor(t / 60) + ':' + ('0' + t % 60).slice(-2);
-  }
-  function startTick() { stopTick(); tick = setInterval(renderClock, 250); }
-  function stopTick() { clearInterval(tick); tick = 0; }
   function fmtTime(ms) {
     var total = Math.max(1, Math.round((ms || 0) / 1000)), m = Math.floor(total / 60), s = total % 60;
     if (!m) return s + (s === 1 ? ' second' : ' seconds');
@@ -680,8 +667,6 @@
   }
   function showFinish() {
     var n = stats[mode].solved;
-    stopTick();
-    renderClock();
     $('finish-time').textContent = speed[mode] ? 'Your time: ' + fmtTime(stats[mode].ms) : '';
     $('finish-time').hidden = !speed[mode];
     $('finish-title').textContent = n + ' solved!';
