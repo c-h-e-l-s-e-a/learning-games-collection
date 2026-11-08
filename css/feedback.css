@@ -7,13 +7,13 @@
 .lf-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .lf-label { font: 600 1rem/1.2 var(--display); }
 .lf-label small { font: 400 0.875rem/1.2 var(--body); color: var(--ink-soft); }
-.lf-field input, .lf-field textarea {
+.lf-field input:not(.lf-vh), .lf-field textarea {
   width: 100%; min-width: 0; padding: 12px 14px;
   font: 400 1rem/1.4 var(--body); color: var(--ink);   /* 16px, so iPads and iPhones don't zoom in */
   background: var(--key); border: 2px solid var(--line); border-radius: 14px;
 }
 .lf-field textarea { resize: vertical; min-height: 8.5rem; }
-.lf-field input:focus-visible, .lf-field textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; border-color: var(--focus); }
+.lf-field input:not(.lf-vh):focus-visible, .lf-field textarea:focus-visible { outline: 3px solid var(--focus); outline-offset: 1px; border-color: var(--focus); }
 /* hidden from people; only spam robots fill it in */
 .lf-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .lf-fb-status { margin: 0; min-height: 1.4em; line-height: 1.4; }
@@ -24,3 +24,20 @@
 .lf-fb-form .lf-go:disabled { opacity: 0.45; cursor: default; transform: none; border-bottom-width: 5px; }
 .lf-screen .lf-fb-form button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 .lf-fb-form .lf-go { font: 600 1.25rem/1 var(--display); }   /* keep the chunky key font, not the plain button font */
+
+/* photos: up to three thumbnails with a remove button each, and an Add photos button styled like the app's chips */
+.lf-fb-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.lf-fb-thumb { position: relative; aspect-ratio: 1; max-width: 100%; border-radius: 12px; overflow: hidden;
+  background: var(--key); border: 2px solid var(--line); }
+.lf-fb-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lf-fb-remove { position: absolute; top: 4px; right: 4px; width: 32px; height: 32px; display: grid; place-items: center;
+  border-radius: 50%; border: 2px solid var(--line); background: var(--key); color: var(--ink);
+  font: 600 0.875rem/1 var(--body); cursor: pointer; }
+.lf-fb-add { align-self: flex-start; min-height: 44px; padding: 0 16px; display: inline-flex; align-items: center; gap: 8px;
+  font: 600 1rem/1 var(--display); color: var(--ink); background: var(--key);
+  border: 2px dashed var(--key-edge); border-radius: 999px; cursor: pointer; }
+.lf-fb-add[hidden] { display: none; }
+.lf-vh:focus-visible + .lf-fb-add, .lf-fb-remove:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+/* device and browser side by side when there's room */
+.lf-fb-note { margin: 4px 0 -6px; font-size: 0.875rem; line-height: 1.4; color: var(--ink-soft); }
+.lf-fb-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 14px; }

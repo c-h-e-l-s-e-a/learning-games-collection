@@ -171,3 +171,7 @@ body {
 .lf-foot button { font: inherit; cursor: pointer; touch-action: manipulation; }
 .lf-foot .lf-fb-link { font: 500 0.875rem/1.2 var(--body); color: var(--ink-soft); }
 .lf-foot button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+/* one line on every screen size; a very long name can still wrap the copyright onto a second line
+   rather than push the page wider */
+.lf-foot { flex-wrap: wrap; row-gap: 2px; }
+.lf-foot .lf-copy { margin-left: auto; }
