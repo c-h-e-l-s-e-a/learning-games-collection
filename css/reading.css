@@ -314,3 +314,22 @@
 .app-r .ctag{margin:0;padding:4px 12px;border-radius:999px;background:var(--paper);border:2px solid var(--line);
   font:600 .9375rem/1.2 var(--display);color:var(--ink-soft)}
 .app-r .ctag.hearty{border-color:color-mix(in srgb,var(--d3) 55%,var(--line));color:var(--ink)}
+
+/* Phones and other short windows: keep the card and its buttons on screen. The word, the picture and the
+   spacing follow the window's height as well as its width. When the card still doesn't fit (a small phone,
+   or the friend letters picker open), the page scrolls just enough to bring the buttons into view. */
+@media (max-height: 900px){
+  .app-r .view{gap:10px}
+  .app-r .tab{min-height:46px}
+  .app-r .stage{min-height:0;padding:12px 12px 14px;gap:10px}
+  .app-r .word{font-size:clamp(3.2rem,min(30vw,11vh),10rem)}
+  .app-r .word.w5{font-size:clamp(2.6rem,min(21vw,8.5vh),8rem)}
+  .app-r .word.long{font-size:clamp(1.5rem,min(10vw,4.6vh),3.8rem);padding-block:.3rem .1rem}
+  .app-r .pic{min-height:clamp(4.4rem,min(26vw,12vh),9rem);font-size:clamp(2.6rem,min(17vw,8.5vh),6rem)}
+  .app-r .pic .phrase{font-size:clamp(1.4rem,min(7.5vw,4.5vh),2.6rem)}
+  .app-r .pic .emo{font-size:clamp(2.2rem,min(13vw,7vh),4.5rem)}
+  .app-r .pic .scene{font-size:clamp(1.8rem,min(12vw,6.2vh),4.2rem)}
+  .app-r .game-say{min-height:0;margin-top:0}
+  .app-r .game-say .buddy{font-size:2.4rem}
+  .app-r .stage .key{min-height:52px}
+}

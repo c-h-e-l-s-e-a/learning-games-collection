@@ -1,6 +1,11 @@
 /* ---------- Maths ---------- */
 *,*::before,*::after{box-sizing: border-box;}
-.app-m{height: calc(100% - var(--foot-h, 56px));}   /* the window, less the footer */
+/* The menu and setup pages are as tall as their content (at least the window, less the footer), so the
+   footer always comes after them. The game and Number play fill exactly that space so their dot pictures
+   can stretch, but never get shorter than 34rem: on a small phone the page scrolls a little instead of
+   squashing the keypad under the footer. */
+.app-m{min-height: calc(100% - var(--foot-h, 56px));}
+.app-m.fill{height: calc(100% - var(--foot-h, 56px)); min-height: 34rem;}
 .app-m{margin: 0;
   padding-inline: 16px;
   padding-block: 10px;

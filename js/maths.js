@@ -289,8 +289,11 @@
     stopClock();
     stopTick();
   }
+  /* the game and Number play fill the window; the menu and setup pages grow with their content */
+  function fillWindow(on) { $('app-m').classList.toggle('fill', on); }
   function showMenu() {
     leaveGame();
+    fillWindow(false);
     mode = 'menu';
     $('game').hidden = true;
     $('setup').hidden = true;
@@ -302,6 +305,7 @@
   var SETUP_SAY = 'Pick your numbers, then press Start.';
   function openSetup(m) {
     leaveGame();
+    fillWindow(false);
     mode = m;
     $('menu').hidden = true;
     $('game').hidden = true;
@@ -367,6 +371,7 @@
     $('menu').hidden = true;
     $('setup').hidden = true;
     $('game').hidden = false;
+    fillWindow(true);
     $('qop').textContent = SIGN[m];
     $('clock').hidden = !speed[m];
     renderTally();
@@ -1005,6 +1010,7 @@
   }
   function showPlay() {
     window.scrollTo(0, 0);
+    fillWindow(true);
     mode = 'play';
     $('menu').hidden = true;
     $('play').hidden = false;

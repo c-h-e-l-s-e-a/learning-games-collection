@@ -709,6 +709,15 @@
     S.round = round; S.i = 0;
     show();
   }
+  /* On a short screen, scroll just enough to bring the card's buttons into view: never up, never further */
+  function keepButtonsInView(){
+    requestAnimationFrame(function(){
+      var a = $("act");
+      if (!a || $("game").hidden) return;
+      var over = a.getBoundingClientRect().bottom + 12 - window.innerHeight;
+      if (over > 0) window.scrollBy({ top: over, behavior: calm ? "auto" : "smooth" });
+    });
+  }
   function sayBox(text){
     return '<div class="say game-say"><span class="buddy" id="r-g-buddy" aria-hidden="true">' + T().buddy + '</span>' +
       '<p class="bubble" id="r-say-line" aria-live="polite">' + text + '</p></div>';
@@ -731,6 +740,7 @@
         '<button type="button" class="key" id="r-back" data-a="back"' + (S.i === 0 ? ' disabled' : '') + '>Back</button>' +
         '<button type="button" class="key go" id="r-act" data-a="reveal">' + GAMES[S.game].btn + '</button>' +
       '</div>';
+    keepButtonsInView();
   }
   function reveal(){
     var item = S.round[S.i], pic = $("pic"), act = $("act");
@@ -746,6 +756,7 @@
     if (S.i === 0) $("say-line").textContent = readCheer() + " Tap " + act.textContent + ".";
     bump($("g-buddy"), "hop");
     if ($("pals")) $("pals").classList.add("yay");
+    keepButtonsInView();
   }
 
   function goBack(){ S.i--; show(); }
@@ -768,6 +779,7 @@
         '<div class="pic pop">' + sceneHTML(st.cover) + '</div>' +
         sayBox(P.read[st.id] ? 'You have read this one. Read it again?' : 'Read the title, then open the book.') +
         '<div class="acts"><button type="button" class="key go" id="r-act" data-a="page">Start reading</button></div>';
+      keepButtonsInView();
       return;
     }
     if (S.page >= n) return storyEnd();
@@ -778,6 +790,7 @@
       sayBox(cardLine(S.page, n, 'Read the page, then tap Show picture.', 'Last page!')) +
       '<div class="acts"><button type="button" class="key" id="r-back" data-a="pageback">Back</button>' +
       '<button type="button" class="key go" id="r-act" data-a="pagereveal">Show picture</button></div>';
+    keepButtonsInView();
   }
   function storyReveal(){
     var p = S.story.pages[S.page], pic = $("pic"), act = $("act"), last = S.page === S.story.pages.length - 1;
@@ -785,6 +798,7 @@
     pic.innerHTML = sceneHTML(p[1]);
     act.textContent = last ? "The end" : "Next page";
     act.dataset.a = "page";
+    keepButtonsInView();
     if (last) $("say-line").textContent = "That’s the end! Tap The end.";
     else if (S.page === 0) $("say-line").textContent = readCheer() + " Tap Next page.";
     bump($("g-buddy"), "hop");
