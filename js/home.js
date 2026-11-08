@@ -13,11 +13,6 @@ var LF = (function () {
         '#FFC9E3', '#1F8A5B', '#C2314F', '#7A3FD1', '#4A1942', '#FF6FB5', '#B388FF', '#FFC857', '#5ED3C6', '#FF9A8B', '#8EC5FF'],
       hi: 'Meow! Pick a game.', done: 'Purr-fect round!',
       yay: ['Purr-fect!', 'Meow-velous!', 'Paw-some!', 'Claw-some work!', 'The cat’s whiskers!'] },
-    halloween: { name: 'Halloween', buddy: '👻', dark: true,
-      c: ['#1B1325', '#FDF3E3', '#BBA8C9', '#2C2038', '#0E0915', '#4A3760', '#FF8A1F', '#B85A00', '#26130A',
-        '#3A2A4D', '#9BE37A', '#FF8F8F', '#C9A6FF', '#1B1325', '#FF8A1F', '#9B6BFF', '#7ED957', '#FFD23F', '#FF5E7E', '#5CC8FF'],
-      hi: 'Boo! Pick a game.', done: 'Spook-tacular round!',
-      yay: ['Boo-tiful!', 'Spook-tacular!', 'Fang-tastic!', 'Wickedly good!', 'Un-boo-lievable!'] },
     race: { name: 'Race Car', buddy: '🏎️',
       c: ['#F2F3F5', '#15181D', '#5A6270', '#FFFFFF', '#BFC5CE', '#CCD1D9', '#E10600', '#9E0400', '#FFFFFF',
         '#FFE45C', '#14803C', '#B3261E', '#0B63CE', '#15181D', '#E53935', '#FFC400', '#1E88E5', '#43A047', '#FB8C00', '#8E99A8'],
@@ -236,6 +231,9 @@ var LF = (function () {
     tone(t);
   };
   api.start = function () {
+    /* the name in the footer comes from js/my-settings.js; without it the line just reads "© 2026" */
+    var who = String((window.MY_SETTINGS && MY_SETTINGS.name) || '').trim();
+    $('lf-copy').textContent = '© 2026' + (who ? ' ' + who : '');
     load(); applyTheme(api.theme);
     if (welcomed) { show('hub'); invite(); return; }
     welcome(true);

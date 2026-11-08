@@ -17,11 +17,6 @@
         '#FFC9E3','#1F8A5B','#C2314F','#7A3FD1','#4A1942','#FF6FB5','#B388FF','#FFC857','#5ED3C6','#FF9A8B','#8EC5FF'],
       hi:'Meow! Pick a game.', done:'Purr-fect round!', plop:'Oops. Not in the litter box!', foods:['🐟','🥛','🍤','🧀'],
       yay:['Purr-fect!','Meow-velous!','Paw-some!','Claw-some work!','The cat’s whiskers!'] },
-    halloween:{ name:'Halloween', buddy:'👻', dark:true,
-      c:['#1B1325','#FDF3E3','#BBA8C9','#2C2038','#0E0915','#4A3760','#FF8A1F','#B85A00','#26130A',
-        '#3A2A4D','#9BE37A','#FF8F8F','#C9A6FF','#1B1325','#FF8A1F','#9B6BFF','#7ED957','#FFD23F','#FF5E7E','#5CC8FF'],
-      hi:'Boo! Pick a game.', done:'Spook-tacular round!', plop:'A spooky surprise!', foods:['🍬','🍭','🎃','🍫'],
-      yay:['Boo-tiful!','Spook-tacular!','Fang-tastic!','Wickedly good!','Un-boo-lievable!'] },
     race:{ name:'Race Car', buddy:'🏎️',
       c:['#F2F3F5','#15181D','#5A6270','#FFFFFF','#BFC5CE','#CCD1D9','#E10600','#9E0400','#FFFFFF',
         '#FFE45C','#14803C','#B3261E','#0B63CE','#15181D','#E53935','#FFC400','#1E88E5','#43A047','#FB8C00','#8E99A8'],
@@ -89,7 +84,7 @@
   /* Friend letters. Square brackets mark the letters that stick together.
      best = two letters, one sound; twin = a doubled letter, one sound; hold = two sounds said close together. */
   var PALS = {
-    best:{ icon:"❤️", name:"Best friends", tag:"best friends", line:"Two letters, one sound.", pairs:["sh","ch","th","ck","ng"] },
+    best:{ icon:"💞", name:"Best friends", tag:"best friends", line:"Two letters, one sound.", pairs:["sh","ch","th","ck","ng"] },
     twin:{ icon:"👯", name:"Twins", tag:"twins", line:"The same letter twice, one sound.", pairs:["ll","ss","ff","zz"] },
     hold:{ icon:"🤝", name:"Teams", tag:"team", line:"Two sounds, said close together.",
            pairs:["tr","st","cl","dr","fl","cr","sn","sl","pl","nd","nt"] }
@@ -505,9 +500,31 @@
   }
 
   /* ---------- Inside a stop: four tabs (words, common words, sentences, stories), each earns a star ---------- */
+  /* The Lesson button sits right under the stop's title: there is one lesson per stop, whichever tab is open.
+     The lesson leads into practising words, so from another tab it opens on Words. While the lesson is
+     showing, the button stays put and fills in (pressed); tapping it again goes back to the game. */
+  var lessonRow = document.createElement("div");
+  lessonRow.className = "lessonrow"; lessonRow.id = "r-lessonrow"; lessonRow.hidden = true;
+  lessonRow.innerHTML = '<button type="button" class="chip meet" id="r-meet" aria-pressed="false"><span class="teach" aria-hidden="true">🧑‍🏫</span>Lesson</button>';
+  $("tabs").insertAdjacentElement("beforebegin", lessonRow);
+  S.lesson = false;
+  function paintLesson(){
+    lessonRow.hidden = !S.stop;
+    $("meet").setAttribute("aria-pressed", S.lesson ? "true" : "false");
+    /* the lesson belongs to the whole stop, so no tab is highlighted while it shows */
+    Array.prototype.forEach.call($("tabs").querySelectorAll("button[data-tab]"), function(b){
+      b.setAttribute("aria-selected", String(!S.lesson && b.dataset.tab === S.tab));
+    });
+  }
+  $("meet").addEventListener("click", function(){
+    if (S.lesson){ start(); return; }
+    if (S.tab !== "words" || S.game === "story") goTab("words");
+    showIntro();
+  });
   function paintTabs(){
     var el = $("tabs");
     el.hidden = !S.stop;
+    S.lesson = false; paintLesson();
     if (!S.stop) return;
     var st = P.stars[S.stop.id];
     el.innerHTML = PARTS.map(function(t){
@@ -553,8 +570,7 @@
     if (g === "friends"){
       /* Friend letters: pick a kind first; only then do that kind's pairs appear, with "All" as the default. */
       var kinds = [["", "Mix them all"]].concat(Object.keys(PALS).map(function(k){ return [k, PALS[k].icon + " " + PALS[k].name]; }));
-      html = chipRow(kinds.map(function(k){ return chip("kind-" + (k[0] || "mix"), 'data-kind="' + k[0] + '"', P.fkind === k[0], k[1]); }).join("") +
-        '<button type="button" class="chip meet" id="r-meet" data-meet="1">🧑‍🏫 Lesson</button>', "Which friends?");
+      html = chipRow(kinds.map(function(k){ return chip("kind-" + (k[0] || "mix"), 'data-kind="' + k[0] + '"', P.fkind === k[0], k[1]); }).join(""), "Which friends?");
       if (P.fkind){
         var pg = PALS[P.fkind];
         html += '<div class="group"><span class="label">' + pg.name + ': all of them, or just one</span><div class="sets" role="group" aria-label="' + pg.name + '">' +
@@ -566,8 +582,7 @@
     } else if (gm.groups){
       var o = P.o[g];
       html = chipRow(chip("mode-mix", 'data-mode="mix"', o.mode === "mix", "Random mix") +
-        chip("mode-one", 'data-mode="one"', o.mode === "one", gm.one) +
-        '<button type="button" class="chip meet" id="r-meet" data-meet="1">🧑‍🏫 Lesson</button>', "Which words?");
+        chip("mode-one", 'data-mode="one"', o.mode === "one", gm.one), "Which words?");
       if (o.mode === "one"){
         html += '<div class="group"><span class="label">' + gm.label + '</span><div class="sets" role="group" aria-label="' + gm.label + '">' +
           gm.groups.map(function(v){
@@ -592,6 +607,7 @@
     var s = S.stop;
     P.met[s.id] = 1; save();
     $("options").hidden = true;   /* the cards below do the choosing while the intro is up */
+    S.lesson = true; paintLesson();
     var top = '<div class="say"><span class="buddy" aria-hidden="true">' + T().buddy + '</span><p class="bubble">';
     var html = "";
     if (s.id === "letters"){
@@ -671,6 +687,7 @@
   }
   function start(){
     save();
+    S.lesson = false; paintLesson();
     buildPicker();
     S.queue = []; S.round = [];
     newRound();
@@ -816,7 +833,9 @@
     stage.innerHTML = confetti() +
       '<p class="done-title">' + n + ' ' + g.noun + ' read!</p>' +
       '<p class="done-sub">' + T().done + sub + '</p>' +
-      (isSent(S.game) ? stickerReward() : S.game === "sight" ? feedReward() : funReward()) +
+      /* Words is the part children most often play alone, so it ends with feeding the buddy; Common words
+         usually has a grown-up helping, so it ends with a haiku or joke to share. Sentences earn a sticker. */
+      (isSent(S.game) ? stickerReward() : S.game === "sight" ? funReward() : feedReward()) +
       '<ul class="wall' + (isSent(S.game) ? ' rows' : '') + '">' + wall + '</ul>' +
       '<div class="acts">' + nextBtn + '<button type="button" class="key go" id="r-more" data-a="more">Keep going</button></div>';
   }
@@ -895,7 +914,7 @@
     setTimeout(function(){ if (fx === S.fx && pq("pile")) pq("pile").innerHTML = ""; }, calm ? 0 : 620);
   }
 
-  /* ---------- After Words: the buddy shares a haiku or a joke ---------- */
+  /* ---------- After Common words: the buddy shares a haiku or a joke ---------- */
   function funReward(){
     var t = THEMES[P.theme] ? P.theme : "minty", f = FUN[t] || FUN.minty, all = [];
     f.h.forEach(function(x){ all.push({ verse:x }); });
@@ -1142,7 +1161,6 @@
   });
   picker.addEventListener("click", function(ev){
     var b = ev.target.closest("button"); if (!b) return;
-    if (b.dataset.meet){ showIntro(); return; }
     if (b.dataset.mode !== undefined){ P.o[S.game].mode = b.dataset.mode; }
     else if (b.dataset.kind !== undefined){ P.fkind = b.dataset.kind; P.pair = ""; }
     else if (b.dataset.set !== undefined){ if (S.game === "friends") P.pair = b.dataset.set; else P.o[S.game].set = b.dataset.set; }

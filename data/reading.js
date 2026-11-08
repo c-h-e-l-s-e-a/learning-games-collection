@@ -293,18 +293,6 @@ var READING_DATA = (function () {
         ["What do cats eat for breakfast?","Mice Krispies!"],
         ["Why did the cat learn to read?","So it could read the meow-nu!"],
         ["What did the cat say when it lost its toy?","You’ve got to be kitten me!"] ] },
-    halloween:{ h:[
-        "A ghost in the hall\nreads a book by candlelight\nboo means good job too",
-        "Black cat on the fence\nit reads the words on the gate\ntrick or treat, it says",
-        "Bats hang in the barn\none bat reads the words out loud\nsqueak, squeak, squeak, hooray",
-        "Witch stirs her big pot\nin go letters, out come words\nwhat a tasty spell",
-        "Sheet with two big eyes\nit floats in to hear you read\nthen floats off, happy" ],
-      j:[
-        ["What kind of books do ghosts like best?","Boo-ks!"],
-        ["Where do ghosts buy their food?","At the ghost-ery store!"],
-        ["What is a ghost’s favourite fruit?","Boo-berries!"],
-        ["What do you call a ghost’s mistake?","A boo-boo!"],
-        ["Why are ghosts bad at telling fibs?","You can see right through them!"] ] },
     race:{ h:[
         "Engines start to roar\nwords zoom past like little cars\nyou read each one fast",
         "Green flag, off we go\ncat, then dog, then bus, then sun\nfinish line, hooray",

@@ -1,11 +1,7 @@
 /* ---------- Feedback: a short form for grown-ups, sent by email through FormSubmit (formsubmit.co) ---------- */
 
-/* WHERE FEEDBACK GOES
-   Put your email address between the quotes, for example "you@example.com".
-   The first message sent from the live site makes FormSubmit email you an "Activate Form" button.
-   That email also gives you a random alias: put the alias here instead of your address,
-   so your real address isn't visible in the page source. */
-var FEEDBACK_TO = "chelsea.corvus@gmail.com";
+/* Where feedback goes: set feedbackEmail in js/my-settings.js, not here. */
+var FEEDBACK_TO = String((window.MY_SETTINGS && MY_SETTINGS.feedbackEmail) || '').trim();
 
 (function () {
   var $ = function (id) { return document.getElementById(id); };
