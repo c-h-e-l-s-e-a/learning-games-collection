@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Learning is fun! app icon: an open book under a star, in the Frog Pond colours -->
+  <rect width="512" height="512" rx="112" fill="#26A69A"/>
+  <!-- confetti -->
+  <circle cx="98" cy="112" r="20" fill="#FF7F5C"/>
+  <circle cx="420" cy="104" r="16" fill="#4FA3E0"/>
+  <circle cx="436" cy="214" r="12" fill="#FFC93C"/>
+  <circle cx="74" cy="236" r="12" fill="#A98BDB"/>
+  <!-- shadow under the book -->
+  <path d="M256 214 C 206 184, 146 176, 84 188 L 84 400 C 146 390, 206 398, 256 428 C 306 398, 366 390, 428 400 L 428 188 C 366 176, 306 184, 256 214 Z" fill="#173A3F" opacity=".18" transform="translate(0 14)"/>
+  <!-- pages -->
+  <path d="M256 214 C 206 184, 146 176, 84 188 L 84 400 C 146 390, 206 398, 256 428 Z" fill="#FFFFFF"/>
+  <path d="M256 214 C 306 184, 366 176, 428 188 L 428 400 C 366 390, 306 398, 256 428 Z" fill="#F3FAF7"/>
+  <!-- lines of writing -->
+  <g class="lines" opacity="0" stroke="#B7D2CA" stroke-width="14" stroke-linecap="round" fill="none">
+    <path d="M118 236 C 160 230, 198 234, 226 248"/>
+    <path d="M118 282 C 160 276, 198 280, 226 294"/>
+    <path d="M118 328 C 160 322, 198 326, 226 340"/>
+    <path d="M286 248 C 314 234, 352 230, 394 236"/>
+    <path d="M286 294 C 314 280, 352 276, 394 282"/>
+  </g>
+  <!-- spine -->
+  <path d="M256 214 L 256 428" stroke="#173A3F" stroke-opacity=".25" stroke-width="6" stroke-linecap="round"/>
+  <!-- star -->
+  <path d="M256 54 L 279 102 L 331 109 L 293 145 L 303 197 L 256 172 L 209 197 L 219 145 L 181 109 L 233 102 Z"
+        fill="#FFC93C" stroke="#D99F00" stroke-width="10" stroke-linejoin="round"/>
+</svg>
