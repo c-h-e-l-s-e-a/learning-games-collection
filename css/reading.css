@@ -117,8 +117,9 @@
 /* the Lesson button, on its own row under the stop's title: a pastel ombre band all the way around a plain
    button, so it is easy to find without looking like a picked option (those are yellow). While the lesson
    is showing it fills in with the same ombre, the way picked buttons fill in. */
-.app-r .lessonrow{display:flex}
-:is(.app-r, .lf-pet) .chip.meet{display:inline-flex;align-items:center;gap:6px;min-height:48px;color:var(--ink);
+.app-r .lessonrow{display:flex;justify-content:center}
+/* a rounded square like the app's other "do this" buttons (Show picture, Next); pills are for picking options */
+:is(.app-r, .lf-pet) .chip.meet{display:inline-flex;align-items:center;gap:8px;min-height:50px;padding:0 24px;border-radius:18px;color:var(--ink);
   border:4px solid transparent;
   background:linear-gradient(var(--key),var(--key)) padding-box,
     linear-gradient(115deg,#F59FC9 0%,#B9A0F2 35%,#8CCBF2 65%,#F7CF6E 100%) border-box}
