@@ -130,7 +130,12 @@ body {
   background: var(--key); border: 2px solid var(--line); border-radius: 999px; font: 600 1rem/1 var(--display);
 }
 .lf-back svg { width: 18px; height: 18px; }
-.lf-theme-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+/* the buddy picker: a Light group and a Dark group, two tiles to a row */
+.lf-theme-grid { display: flex; flex-direction: column; gap: 18px; }
+.lf-theme-group { display: flex; flex-direction: column; gap: 8px; }
+.lf-theme-head { margin: 0; display: flex; align-items: center; gap: 6px;
+  font: 600 0.875rem/1.2 var(--body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.lf-theme-tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .lf-tile {
   min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
   padding: 12px; text-align: left; border: 2px solid; border-radius: 18px;

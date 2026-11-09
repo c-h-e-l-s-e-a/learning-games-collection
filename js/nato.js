@@ -95,11 +95,11 @@
   var TOKENS = ['paper','ink','ink-soft','key','key-edge','line','accent','accent-edge','accent-ink',
     'slot','good','bad','focus','face','d1','d2','d3','d4','d5','d6'];
   var THEMES = {
-    minty:{ name:'Frog Pond', buddy:'🐸', auto:true,
-      c:['#EAF6F1','#173A3F','#527678','#FFFFFF','#B7D2CA','#C3DCD5','#FFC93C','#D99F00','#173A3F',
-        '#FFE9A6','#1A8754','#C43D27','#2F6FED','#173A3F','#26A69A','#FFB703','#FF7F5C','#7CB342','#4FA3E0','#A98BDB'],
-      hi:'Hi! Pick a game.', done:'Toad-ally brilliant round!', plop:'Hop, hop, plop!', foods:['🪰','🐛','🦟','🦗'],
-      yay:['Toad-ally great!','Ribbit-ing work!','Hop, hop, hooray!','Leaps ahead!','Un-frog-ettable!'] },
+    snow:{ name:'Snowman', buddy:'⛄',
+      c:['#EEF4FB','#16294A','#56688C','#FFFFFF','#BCC8E0','#CDD7EC','#8FD3F7','#4A9DD3','#16294A',
+        '#E4DDFB','#15724C','#C43D27','#2F6FED','#16294A','#4C8FE6','#B9A6F5','#7EDDD2','#9AA9E8','#C9D4E4','#9580EC'],
+      hi:'Snow day! Pick a game.', done:'That round was snow much fun!', plop:'Snow-poo! Just a little snowball.', foods:['🥕','❄️','🧊','🍧'],
+      yay:['Snow-tastic!','Ice work!','Cool as ice!','Brrr-illiant!','Flake-tastic!'] },
     kitty:{ name:'Kitty', buddy:'🐱',
       c:['#FFF0F6','#4A1942','#8A5A80','#FFFFFF','#F0B8D4','#F5C6DD','#FF8FC7','#E05C9F','#4A1942',
         '#FFC9E3','#1F8A5B','#C2314F','#7A3FD1','#4A1942','#FF6FB5','#B388FF','#FFC857','#5ED3C6','#FF9A8B','#8EC5FF'],
@@ -110,21 +110,6 @@
         '#FFE45C','#14803C','#B3261E','#0B63CE','#15181D','#E53935','#FFC400','#1E88E5','#43A047','#FB8C00','#8E99A8'],
       hi:'Start your engines! Pick a game.', done:'You took the chequered flag!', plop:'Pit stop!', foods:['⛽','🛢️','🔋','🍩'],
       yay:['Vroom!','Full speed ahead!','Pole position!','Turbo brain!','Green light, go!'] },
-    wizard:{ name:'Wizard', buddy:'🧙', dark:true,
-      c:['#171A3A','#F3EEFF','#AEB0DA','#252A57','#0C0E24','#3D4380','#FFD86B','#B8922A','#2A1F05',
-        '#353B78','#8FE3C0','#FFA0A8','#B9A2FF','#171A3A','#B58CFF','#FFD86B','#5FD4E6','#FF8FCF','#8FE38F','#FFA55C'],
-      hi:'Greetings! Pick a game.', done:'That was pure magic!', plop:'Abraca-poo!', foods:['🍄','🧪','🥧','🍎'],
-      yay:['Magical!','Spell-binding!','Wand-erful!','Abracadabra!','Pure wizardry!'] },
-    ocean:{ name:'Ocean', buddy:'🐙',
-      c:['#E6F6FB','#0E3350','#4A7089','#FFFFFF','#AAD3E3','#BDDDEA','#FF8A65','#D9602F','#0E3350',
-        '#FFE2B8','#12805C','#C43D27','#1565C0','#0E3350','#1FA2C9','#FF8A65','#37C8AB','#FFC94D','#7C9CF0','#F58FB4'],
-      hi:'Splash! Pick a game.', done:'You made a real splash!', plop:'Sea you later, poop!', foods:['🦐','🐟','🦀','🍤'],
-      yay:['Fin-tastic!','Whale done!','O-fish-ally great!','Making waves!','Sea-riously good!'] },
-    space:{ name:'Space', buddy:'👽', dark:true,
-      c:['#0E1326','#EEF2FF','#9AA6CC','#1B2242','#060914','#2F3A6B','#5CE1E6','#2A9CA1','#062426',
-        '#26305C','#8FE38F','#FF9C9C','#FFD86B','#0E1326','#5CE1E6','#FF7AD9','#FFD86B','#9B8CFF','#7BE08A','#FF9A5C'],
-      hi:'Greetings, earthling! Pick a game.', done:'That round was out of this world!', plop:'One small plop for alien-kind!', foods:['🧀','🌮','🍕','⭐'],
-      yay:['Out of this world!','Stellar!','Blast off!','Rocket brain!','Astro-nomical!'] },
     dino:{ name:'Dino', buddy:'🦖',
       c:['#F1F6E4','#263A1B','#5F7551','#FFFFFF','#BFD3A6','#CFDDBB','#FF9F1C','#C77400','#2B1B00',
         '#FFE3AE','#2E7D32','#C43D27','#2F6FED','#263A1B','#6BBF3B','#FF9F1C','#3FA7A0','#E4C13E','#E8734A','#8C7AE6'],
@@ -135,26 +120,41 @@
         '#FFE08A','#2E7D32','#C43D27','#2F6FED','#3B2414','#C68A4E','#F4C542','#6FC2E8','#8BC34A','#F28B82','#D9B48A'],
       hi:'Plop! Pick a game.', done:'You are number one at number twos!', plop:'Look, a mini me!', foods:['🌽','🌯','🥜','🧻'],
       yay:['Plop-tastic!','Number one!','Un-poo-lievable!','Flushed with success!','Stinking good!'] },
-    fox:{ name:'Fox', buddy:'🦊',
-      c:['#FFF4E8','#3A1F0F','#80583F','#FFFFFF','#F0CBA8','#F5D9BD','#F26B1D','#B8480A','#3A1F0F',
-        '#FFDDB8','#2E7D32','#B3261E','#2F6FED','#3A1F0F','#F5823A','#FFC145','#C98B5E','#7FB069','#EE6C73','#5DA9E9'],
-      hi:'Yip! Pick a game.', done:'You out-foxed every one!', plop:'Fox-cuse me!', foods:['🍇','🥚','🫐','🍗'],
-      yay:['Fox-cellent!','Sly and speedy!','Clever cub!','Out-foxed it!','Quick as a fox!'] },
-    forest:{ name:'Forest', buddy:'🐻', dark:true,
-      c:['#16261C','#F1F5E9','#A9BDA6','#213528','#0C160F','#3A5743','#E0A458','#A8742C','#2A1A05',
-        '#2F4A37','#9BE38F','#FF9C8A','#9CC2FF','#16261C','#7FB069','#E0A458','#C97B4A','#6EC5B8','#E8D174','#D98880'],
-      hi:'Big bear hug! Pick a game.', done:'Bear-y well done!', plop:'Does a bear poop in the woods? Yes.', foods:['🍯','🐟','🫐','🥞'],
-      yay:['Bear-illiant!','Paws-itively great!','Grrr-eat!','Un-bear-ably good!','Sweet as honey!'] },
+    ballet:{ name:'Ballet', buddy:'🧑‍🩰',
+      c:['#FBF4F1','#3D2A3A','#7D6677','#FFFFFF','#E5CFD4','#EEDDE0','#E8A0B4','#C4788F','#3D2A3A',
+        '#F6D9E0','#2F7D5B','#B93A52','#6C5CE7','#3D2A3A','#F2A7B8','#C9B6E4','#A8D8D0','#F6D38B','#9EC5E8','#E9A08B'],
+      hi:'Curtain up! Pick a game.', done:'Bravo! A standing ovation!', plop:'Plié... plop!', foods:['🍓','🧁','🍌','🥐'],
+      yay:['Bravo!','On pointe!','Twirl-tastic!','Encore!','Graceful work!'] },
     peacock:{ name:'Peacock', buddy:'🦚', dark:true,
       c:['#0B2B33','#EFFBF8','#9CC4C4','#123C46','#051A1F','#24606B','#F2C14E','#B88A1E','#2A1F05',
         '#1B4F5B','#8FE3A8','#FFA08E','#C9A6FF','#0B2B33','#1FBFB8','#4C9BFF','#7ED957','#F2C14E','#9B6BFF','#FF7AB6'],
       hi:'Ta-da! Pick a game.', done:'Time to show off those feathers!', plop:'Not on my feathers!', foods:['🌾','🍇','🐛','🌻'],
       yay:['Fan-tastic!','Show-stopping!','Feather-perfect!','Proud as a peacock!','Dazzling!'] },
-    ballet:{ name:'Ballet', buddy:'🧑‍🩰',
-      c:['#FBF4F1','#3D2A3A','#7D6677','#FFFFFF','#E5CFD4','#EEDDE0','#E8A0B4','#C4788F','#3D2A3A',
-        '#F6D9E0','#2F7D5B','#B93A52','#6C5CE7','#3D2A3A','#F2A7B8','#C9B6E4','#A8D8D0','#F6D38B','#9EC5E8','#E9A08B'],
-      hi:'Curtain up! Pick a game.', done:'Bravo! A standing ovation!', plop:'Plié... plop!', foods:['🍓','🧁','🍌','🥐'],
-      yay:['Bravo!','On pointe!','Twirl-tastic!','Encore!','Graceful work!'] }
+    unicorn:{ name:'Unicorn', buddy:'🦄', dark:true,
+      c:['#24132E','#FBEFFF','#CDB2D8','#331C40','#12081A','#523466','#FF9ED2','#C9619C','#2A0A1F',
+        '#43275A','#9BE3B0','#FFA08E','#A9C8FF','#24132E','#6FC8F2','#C3A3FF','#FFD36E','#8EE3C0','#FFB38A','#B58CFF'],
+      hi:'Sparkle time! Pick a game.', done:'You made the rainbow shine!', plop:'Ta-da! Sparkly rainbow poop!', foods:['🍎','🌈','🍭','☁️'],
+      yay:['Sparkle-tastic!','Rainbow brain!','Neigh-bulous!','Uni-corn-ect!','Mane-ificent!'] },
+    ocean:{ name:'Ocean', buddy:'🐙', dark:true,
+      c:['#0A2238','#E8F6FB','#9FC0CF','#12304A','#04111D','#24506B','#FF8A65','#C4532F','#2A0E04',
+        '#1B405C','#8FE3B5','#FFA08E','#9CC2FF','#0A2238','#3CC8E0','#FFC94D','#F58FB4','#37C8AB','#7C9CF0','#B79CF2'],
+      hi:'Splash! Pick a game.', done:'You made a real splash!', plop:'Sea you later, poop!', foods:['🦐','🐟','🦀','🍤'],
+      yay:['Fin-tastic!','Whale done!','O-fish-ally great!','Making waves!','Sea-riously good!'] },
+    forest:{ name:'Forest', buddy:'🐻', dark:true,
+      c:['#16261C','#F1F5E9','#A9BDA6','#213528','#0C160F','#3A5743','#E0A458','#A8742C','#2A1A05',
+        '#2F4A37','#9BE38F','#FF9C8A','#9CC2FF','#16261C','#7FB069','#E0A458','#C97B4A','#6EC5B8','#E8D174','#D98880'],
+      hi:'Big bear hug! Pick a game.', done:'Bear-y well done!', plop:'Does a bear poop in the woods? Yes.', foods:['🍯','🐟','🫐','🥞'],
+      yay:['Bear-illiant!','Paws-itively great!','Grrr-eat!','Un-bear-ably good!','Sweet as honey!'] },
+    space:{ name:'Space', buddy:'👽', dark:true,
+      c:['#0E1326','#EEF2FF','#9AA6CC','#1B2242','#060914','#2F3A6B','#5CE1E6','#2A9CA1','#062426',
+        '#26305C','#8FE38F','#FF9C9C','#FFD86B','#0E1326','#5CE1E6','#FF7AD9','#FFD86B','#9B8CFF','#7BE08A','#FF9A5C'],
+      hi:'Greetings, earthling! Pick a game.', done:'That round was out of this world!', plop:'One small plop for alien-kind!', foods:['🧀','🌮','🍕','⭐'],
+      yay:['Out of this world!','Stellar!','Blast off!','Rocket brain!','Astro-nomical!'] },
+    wizard:{ name:'Wizard', buddy:'🧙', dark:true,
+      c:['#171A3A','#F3EEFF','#AEB0DA','#252A57','#0C0E24','#3D4380','#FFD86B','#B8922A','#2A1F05',
+        '#353B78','#8FE3C0','#FFA0A8','#B9A2FF','#171A3A','#B58CFF','#FFD86B','#5FD4E6','#FF8FCF','#8FE38F','#FFA55C'],
+      hi:'Greetings! Pick a game.', done:'That was pure magic!', plop:'Abraca-poo!', foods:['🍄','🧪','🥧','🍎'],
+      yay:['Magical!','Spell-binding!','Wand-erful!','Abracadabra!','Pure wizardry!'] }
   };
   var RADIO = ['Roger that!','Copy that!','Loud and clear!','Affirmative!','Message received!'];
   var NOPE = ['That one is a decoy! Try again.','Sneaky decoy! Pick another.','Not that one. You’ve got this!','Nope, a decoy. One more try!'];
@@ -178,7 +178,7 @@
   /* S is this visit; P is what the browser remembers between visits. */
   var S = { game:null, queue:[], round:[], i:0, done:[], gotN:0, total:0, again:{}, miss:false, pos:0, solved:false,
             sent:[], fx:0, fedNow:0, snacks:3, last:"" };
-  var P = { theme:"minty", group:"all", order:"shuffle", level:"short", listen:"read", pts:{}, fed:0, poops:0 };
+  var P = { theme:"peacock", group:"all", order:"shuffle", level:"short", listen:"read", pts:{}, fed:0, poops:0 };
   try {
     var d = JSON.parse(localStorage.getItem(STORE) || "{}");
     if (THEMES[d.theme]) P.theme = d.theme;
@@ -241,7 +241,7 @@
   function openMenu(){ S.game = null; view("menu"); }
 
   /* ---------- Themes and the buddy ---------- */
-  function T(){ return THEMES[P.theme] || THEMES.minty; }
+  function T(){ return THEMES[P.theme] || THEMES.peacock; }
   function applyTheme(id){
     P.theme = THEMES[id] ? id : "peacock";
     $("menu-bubble").textContent = T().hi;

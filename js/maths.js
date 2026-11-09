@@ -16,11 +16,11 @@
   var TOKENS = ['paper', 'ink', 'ink-soft', 'key', 'key-edge', 'line', 'accent', 'accent-edge', 'accent-ink',
     'slot', 'good', 'bad', 'focus', 'face', 'd1', 'd2', 'd3', 'd4', 'd5', 'd6'];
   var THEMES = {
-    minty: { name: 'Frog Pond', buddy: '🐸', auto: true,
-      c: ['#EAF6F1', '#173A3F', '#527678', '#FFFFFF', '#B7D2CA', '#C3DCD5', '#FFC93C', '#D99F00', '#173A3F',
-        '#FFE9A6', '#1A8754', '#C43D27', '#2F6FED', '#173A3F', '#26A69A', '#FFB703', '#FF7F5C', '#7CB342', '#4FA3E0', '#A98BDB'],
-      hi: 'Hi! Pick a game.', done: 'Toad-ally brilliant round!',
-      yay: ['Toad-ally right!', 'Ribbit-ing work!', 'Hop, hop, hooray!', 'Leaps ahead!', 'Un-frog-ettable!'] },
+    snow: { name: 'Snowman', buddy: '⛄',
+      c: ['#EEF4FB', '#16294A', '#56688C', '#FFFFFF', '#BCC8E0', '#CDD7EC', '#8FD3F7', '#4A9DD3', '#16294A',
+        '#E4DDFB', '#15724C', '#C43D27', '#2F6FED', '#16294A', '#4C8FE6', '#B9A6F5', '#7EDDD2', '#9AA9E8', '#C9D4E4', '#9580EC'],
+      hi: 'Snow day! Pick a game.', done: 'That round was snow much fun!',
+      yay: ['Snow-tastic!', 'Ice work!', 'Cool as ice!', 'Brrr-illiant!', 'Flake-tastic!'] },
     kitty: { name: 'Kitty', buddy: '🐱',
       c: ['#FFF0F6', '#4A1942', '#8A5A80', '#FFFFFF', '#F0B8D4', '#F5C6DD', '#FF8FC7', '#E05C9F', '#4A1942',
         '#FFC9E3', '#1F8A5B', '#C2314F', '#7A3FD1', '#4A1942', '#FF6FB5', '#B388FF', '#FFC857', '#5ED3C6', '#FF9A8B', '#8EC5FF'],
@@ -31,21 +31,6 @@
         '#FFE45C', '#14803C', '#B3261E', '#0B63CE', '#15181D', '#E53935', '#FFC400', '#1E88E5', '#43A047', '#FB8C00', '#8E99A8'],
       hi: 'Start your engines! Pick a game.', done: 'You took the chequered flag!',
       yay: ['Vroom! Correct!', 'Full speed ahead!', 'Pole position!', 'Turbo brain!', 'Green light, go!'] },
-    wizard: { name: 'Wizard', buddy: '🧙', dark: true,
-      c: ['#171A3A', '#F3EEFF', '#AEB0DA', '#252A57', '#0C0E24', '#3D4380', '#FFD86B', '#B8922A', '#2A1F05',
-        '#353B78', '#8FE3C0', '#FFA0A8', '#B9A2FF', '#171A3A', '#B58CFF', '#FFD86B', '#5FD4E6', '#FF8FCF', '#8FE38F', '#FFA55C'],
-      hi: 'Greetings! Pick a game.', done: 'That was pure magic!',
-      yay: ['Magical!', 'Spell-binding!', 'Wand-erful!', 'Abraca-correct!', 'Pure wizardry!'] },
-    ocean: { name: 'Ocean', buddy: '🐙',
-      c: ['#E6F6FB', '#0E3350', '#4A7089', '#FFFFFF', '#AAD3E3', '#BDDDEA', '#FF8A65', '#D9602F', '#0E3350',
-        '#FFE2B8', '#12805C', '#C43D27', '#1565C0', '#0E3350', '#1FA2C9', '#FF8A65', '#37C8AB', '#FFC94D', '#7C9CF0', '#F58FB4'],
-      hi: 'Splash! Pick a game.', done: 'You made a real splash!',
-      yay: ['Fin-tastic!', 'Whale done!', 'O-fish-ally right!', 'Making waves!', 'Sea-riously good!'] },
-    space: { name: 'Space', buddy: '👽', dark: true,
-      c: ['#0E1326', '#EEF2FF', '#9AA6CC', '#1B2242', '#060914', '#2F3A6B', '#5CE1E6', '#2A9CA1', '#062426',
-        '#26305C', '#8FE38F', '#FF9C9C', '#FFD86B', '#0E1326', '#5CE1E6', '#FF7AD9', '#FFD86B', '#9B8CFF', '#7BE08A', '#FF9A5C'],
-      hi: 'Greetings, earthling! Pick a game.', done: 'That round was out of this world!',
-      yay: ['Out of this world!', 'Stellar!', 'Blast off!', 'Rocket brain!', 'Astro-nomical!'] },
     dino: { name: 'Dino', buddy: '🦖',
       c: ['#F1F6E4', '#263A1B', '#5F7551', '#FFFFFF', '#BFD3A6', '#CFDDBB', '#FF9F1C', '#C77400', '#2B1B00',
         '#FFE3AE', '#2E7D32', '#C43D27', '#2F6FED', '#263A1B', '#6BBF3B', '#FF9F1C', '#3FA7A0', '#E4C13E', '#E8734A', '#8C7AE6'],
@@ -56,36 +41,51 @@
         '#FFE08A', '#2E7D32', '#C43D27', '#2F6FED', '#3B2414', '#C68A4E', '#F4C542', '#6FC2E8', '#8BC34A', '#F28B82', '#D9B48A'],
       hi: 'Plop! Pick a game.', done: 'You are number one at number twos!',
       yay: ['Plop-tastic!', 'Number one!', 'Un-poo-lievable!', 'Flushed with success!', 'Stinking good!'] },
-    fox: { name: 'Fox', buddy: '🦊',
-      c: ['#FFF4E8', '#3A1F0F', '#80583F', '#FFFFFF', '#F0CBA8', '#F5D9BD', '#F26B1D', '#B8480A', '#3A1F0F',
-        '#FFDDB8', '#2E7D32', '#B3261E', '#2F6FED', '#3A1F0F', '#F5823A', '#FFC145', '#C98B5E', '#7FB069', '#EE6C73', '#5DA9E9'],
-      hi: 'Yip! Pick a game.', done: 'You out-foxed every question!',
-      yay: ['Fox-cellent!', 'Sly and speedy!', 'Clever cub!', 'Out-foxed it!', 'Quick as a fox!'] },
-    forest: { name: 'Forest', buddy: '🐻', dark: true,
-      c: ['#16261C', '#F1F5E9', '#A9BDA6', '#213528', '#0C160F', '#3A5743', '#E0A458', '#A8742C', '#2A1A05',
-        '#2F4A37', '#9BE38F', '#FF9C8A', '#9CC2FF', '#16261C', '#7FB069', '#E0A458', '#C97B4A', '#6EC5B8', '#E8D174', '#D98880'],
-      hi: 'Big bear hug! Pick a game.', done: 'Bear-y well done!',
-      yay: ['Bear-illiant!', 'Paws-itively right!', 'Grrr-eat!', 'Un-bear-ably good!', 'Sweet as honey!'] },
+    ballet: { name: 'Ballet', buddy: '🧑‍🩰',
+      c: ['#FBF4F1', '#3D2A3A', '#7D6677', '#FFFFFF', '#E5CFD4', '#EEDDE0', '#E8A0B4', '#C4788F', '#3D2A3A',
+        '#F6D9E0', '#2F7D5B', '#B93A52', '#6C5CE7', '#3D2A3A', '#F2A7B8', '#C9B6E4', '#A8D8D0', '#F6D38B', '#9EC5E8', '#E9A08B'],
+      hi: 'Curtain up! Pick a game.', done: 'Bravo! A standing ovation!',
+      yay: ['Bravo!', 'On pointe!', 'Twirl-tastic!', 'Encore!', 'Graceful work!'] },
     peacock: { name: 'Peacock', buddy: '🦚', dark: true,
       c: ['#0B2B33', '#EFFBF8', '#9CC4C4', '#123C46', '#051A1F', '#24606B', '#F2C14E', '#B88A1E', '#2A1F05',
         '#1B4F5B', '#8FE3A8', '#FFA08E', '#C9A6FF', '#0B2B33', '#1FBFB8', '#4C9BFF', '#7ED957', '#F2C14E', '#9B6BFF', '#FF7AB6'],
       hi: 'Ta-da! Pick a game.', done: 'Time to show off those feathers!',
       yay: ['Fan-tastic!', 'Show-stopping!', 'Feather-perfect!', 'Proud as a peacock!', 'Dazzling!'] },
-    ballet: { name: 'Ballet', buddy: '🧑‍🩰',
-      c: ['#FBF4F1', '#3D2A3A', '#7D6677', '#FFFFFF', '#E5CFD4', '#EEDDE0', '#E8A0B4', '#C4788F', '#3D2A3A',
-        '#F6D9E0', '#2F7D5B', '#B93A52', '#6C5CE7', '#3D2A3A', '#F2A7B8', '#C9B6E4', '#A8D8D0', '#F6D38B', '#9EC5E8', '#E9A08B'],
-      hi: 'Curtain up! Pick a game.', done: 'Bravo! A standing ovation!',
-      yay: ['Bravo!', 'On pointe!', 'Twirl-tastic!', 'Encore!', 'Graceful work!'] }
+    unicorn: { name: 'Unicorn', buddy: '🦄', dark: true,
+      c: ['#24132E', '#FBEFFF', '#CDB2D8', '#331C40', '#12081A', '#523466', '#FF9ED2', '#C9619C', '#2A0A1F',
+        '#43275A', '#9BE3B0', '#FFA08E', '#A9C8FF', '#24132E', '#6FC8F2', '#C3A3FF', '#FFD36E', '#8EE3C0', '#FFB38A', '#B58CFF'],
+      hi: 'Sparkle time! Pick a game.', done: 'You made the rainbow shine!',
+      yay: ['Sparkle-tastic!', 'Rainbow brain!', 'Neigh-bulous!', 'Uni-corn-ect!', 'Mane-ificent!'] },
+    ocean: { name: 'Ocean', buddy: '🐙', dark: true,
+      c: ['#0A2238', '#E8F6FB', '#9FC0CF', '#12304A', '#04111D', '#24506B', '#FF8A65', '#C4532F', '#2A0E04',
+        '#1B405C', '#8FE3B5', '#FFA08E', '#9CC2FF', '#0A2238', '#3CC8E0', '#FFC94D', '#F58FB4', '#37C8AB', '#7C9CF0', '#B79CF2'],
+      hi: 'Splash! Pick a game.', done: 'You made a real splash!',
+      yay: ['Fin-tastic!', 'Whale done!', 'O-fish-ally right!', 'Making waves!', 'Sea-riously good!'] },
+    forest: { name: 'Forest', buddy: '🐻', dark: true,
+      c: ['#16261C', '#F1F5E9', '#A9BDA6', '#213528', '#0C160F', '#3A5743', '#E0A458', '#A8742C', '#2A1A05',
+        '#2F4A37', '#9BE38F', '#FF9C8A', '#9CC2FF', '#16261C', '#7FB069', '#E0A458', '#C97B4A', '#6EC5B8', '#E8D174', '#D98880'],
+      hi: 'Big bear hug! Pick a game.', done: 'Bear-y well done!',
+      yay: ['Bear-illiant!', 'Paws-itively right!', 'Grrr-eat!', 'Un-bear-ably good!', 'Sweet as honey!'] },
+    space: { name: 'Space', buddy: '👽', dark: true,
+      c: ['#0E1326', '#EEF2FF', '#9AA6CC', '#1B2242', '#060914', '#2F3A6B', '#5CE1E6', '#2A9CA1', '#062426',
+        '#26305C', '#8FE38F', '#FF9C9C', '#FFD86B', '#0E1326', '#5CE1E6', '#FF7AD9', '#FFD86B', '#9B8CFF', '#7BE08A', '#FF9A5C'],
+      hi: 'Greetings, earthling! Pick a game.', done: 'That round was out of this world!',
+      yay: ['Out of this world!', 'Stellar!', 'Blast off!', 'Rocket brain!', 'Astro-nomical!'] },
+    wizard: { name: 'Wizard', buddy: '🧙', dark: true,
+      c: ['#171A3A', '#F3EEFF', '#AEB0DA', '#252A57', '#0C0E24', '#3D4380', '#FFD86B', '#B8922A', '#2A1F05',
+        '#353B78', '#8FE3C0', '#FFA0A8', '#B9A2FF', '#171A3A', '#B58CFF', '#FFD86B', '#5FD4E6', '#FF8FCF', '#8FE38F', '#FFA55C'],
+      hi: 'Greetings! Pick a game.', done: 'That was pure magic!',
+      yay: ['Magical!', 'Spell-binding!', 'Wand-erful!', 'Abraca-correct!', 'Pure wizardry!'] }
   };
   /* What the buddy shares on the finish screen: a haiku and a joke per theme, plus kind words. */
   var FUN = {
-    minty: {
-      h: ['Green frog on a log\ncounts the lily pads by twos\nthen leaps to the next',
-        'Rain taps on the pond\nevery ripple makes a ring\ncount them as they grow',
-        'Ribbit goes the frog\none more answer, one more hop\nthe pond cheers for you'],
-      j: ['Why are frogs so happy?\nThey eat whatever bugs them!',
-        'What do frogs order at a restaurant?\nFrench flies!',
-        'What happens when a frog’s car breaks down?\nIt gets toad away!'] },
+    snow: {
+      h: ['Snowflakes drifting down\ncount them two by two by two\nthe whole yard turns white',
+        'Three big balls of snow\nstacked up high, plus one carrot\nand that makes a friend',
+        'Mittens on the line\none pair, two pairs, three pairs, four\nwarm hands, clever mind'],
+      j: ['What do snowmen eat for lunch?\nIceburgers!',
+        'Where do snowmen keep their money?\nIn a snow bank!',
+        'What do you call a snowman in July?\nA puddle!'] },
     kitty: {
       h: ['Soft paws on the keys\nevery answer lands just right\ntime for a cat nap',
         'Whiskers twitch with pride\nyou chased every number down\nnow purr in the sun',
@@ -100,27 +100,6 @@
       j: ['What is a race car’s favourite snack?\nFast food!',
         'Why did the racing car go to bed early?\nIt was wheely tyre-d!',
         'What do you get when dinosaurs crash their cars?\nTyrannosaurus wrecks!'] },
-    wizard: {
-      h: ['A wave of the wand\nnumbers dance out of the hat\nyour brain is the spell',
-        'Old book, dusty spell\nturns a hard sum into gold\nthe secret is you',
-        'Owl upon the roof\nhoots the answer to the moon\nyou knew it first, though'],
-      j: ['How do wizards do their sums?\nWith a spell-culator!',
-        'What do you call a wizard from outer space?\nA flying sorcerer!',
-        'Why do wizards brush their teeth three times a day?\nTo stop bat breath!'] },
-    ocean: {
-      h: ['Eight arms wave hello\neach one counting something new\ndeep sea, deeper thoughts',
-        'Bubbles float up high\neach one holds a tiny thought\npop, there goes a sum',
-        'Waves count on the shore\none, two, three, and back again\nthe sea never stops'],
-      j: ['How many tickles make an octopus laugh?\nTen-tickles!',
-        'Why did the crab never share?\nBecause it was shellfish!',
-        'What do you call a fish with no eyes?\nA fsh!'] },
-    space: {
-      h: ['Stars beyond counting\nbut you counted anyway\nblast off, little star',
-        'Rocket on the pad\nten, nine, eight, you know the rest\nlift off, clever one',
-        'Moon dust on your boots\nfootprints made of right answers\nthey will last for years'],
-      j: ['How do you plan a party in space?\nYou planet!',
-        'Why did the sun go to school?\nTo get brighter!',
-        'What is an astronaut’s favourite key on the keyboard?\nThe space bar!'] },
     dino: {
       h: ['Big feet shake the ground\ntiny arms still count to ten\nroar for your good work',
         'Long neck in the trees\nnibbling numbers leaf by leaf\nfull of facts by noon',
@@ -135,20 +114,13 @@
       j: ['Why did the toilet paper roll down the hill?\nTo get to the bottom!',
         'What did one toilet say to the other?\nYou look a bit flushed!',
         'What is brown and sticky?\nA stick!'] },
-    fox: {
-      h: ['Quick fox in the leaves\nsniffing out the right answers\ntail held high and proud',
-        'Red tail in the snow\npaw prints lead to the answer\nclever little fox',
-        'Fox cubs in the den\npractise pouncing every day\nthat is how they learn'],
-      j: ['What is a fox’s favourite dance?\nThe fox-trot!',
-        'What do you call a fox with a carrot in each ear?\nAnything you like. It can’t hear you!',
-        'Why did the fox cross the road?\nTo look for the chicken!'] },
-    forest: {
-      h: ['Bear beneath the pines\ncounting acorns one by one\nhoney for your brain',
-        'Tall trees, quiet path\na bear hums the times tables\nbirds join in the song',
-        'Sleepy winter cave\nbear dreams of numbers and jam\nwakes up knowing more'],
-      j: ['What do you call a bear with no teeth?\nA gummy bear!',
-        'What do you call a wet bear?\nA drizzly bear!',
-        'How do bears keep their den cool?\nBear conditioning!'] },
+    ballet: {
+      h: ['Toes point, numbers twirl\nevery step lands on the beat\ntake a bow, well done',
+        'Soft light on the stage\none small leap, then another\nthat is how you soar',
+        'Practice at the barre\nthe same steps, day after day\nthen the curtain lifts'],
+      j: ['Why are ballerinas so good at maths?\nThey always stay on pointe!',
+        'What is a ballerina’s favourite number?\nTwo-two!',
+        'Why do dancers make great friends?\nThey always keep you on your toes!'] },
     peacock: {
       h: ['One hundred bright eyes\nopen in a fan of blue\nall of them saw you',
         'Feathers green and gold\nspread wide like a hand of cards\nevery one a win',
@@ -156,13 +128,41 @@
       j: ['Why do peacocks love getting the answer right?\nAny excuse to show off!',
         'Why does the peacock get invited to every party?\nIt always brings its own fan club!',
         'What is a peacock’s favourite game?\nShow and tail!'] },
-    ballet: {
-      h: ['Toes point, numbers twirl\nevery step lands on the beat\ntake a bow, well done',
-        'Soft light on the stage\none small leap, then another\nthat is how you soar',
-        'Practice at the barre\nthe same steps, day after day\nthen the curtain lifts'],
-      j: ['Why are ballerinas so good at maths?\nThey always stay on pointe!',
-        'What is a ballerina’s favourite number?\nTwo-two!',
-        'Why do dancers make great friends?\nThey always keep you on your toes!'] }
+    unicorn: {
+      h: ['Rainbow in the sky\neach colour is a new sum\nadd them, see it shine',
+        'One horn, four soft hooves\ncount them up and you get five\nmagic maths, my friend',
+        'Sparkles in my mane\none for each answer you got\nnow I shine so bright'],
+      j: ['What do you call a unicorn with no horn?\nA horse!',
+        'Where do unicorns go to learn?\nUni-versity!',
+        'Why are unicorns so good at sums?\nThey always get to the point!'] },
+    ocean: {
+      h: ['Eight arms wave hello\neach one counting something new\ndeep sea, deeper thoughts',
+        'Bubbles float up high\neach one holds a tiny thought\npop, there goes a sum',
+        'Waves count on the shore\none, two, three, and back again\nthe sea never stops'],
+      j: ['How many tickles make an octopus laugh?\nTen-tickles!',
+        'Why did the crab never share?\nBecause it was shellfish!',
+        'What do you call a fish with no eyes?\nA fsh!'] },
+    forest: {
+      h: ['Bear beneath the pines\ncounting acorns one by one\nhoney for your brain',
+        'Tall trees, quiet path\na bear hums the times tables\nbirds join in the song',
+        'Sleepy winter cave\nbear dreams of numbers and jam\nwakes up knowing more'],
+      j: ['What do you call a bear with no teeth?\nA gummy bear!',
+        'What do you call a wet bear?\nA drizzly bear!',
+        'How do bears keep their den cool?\nBear conditioning!'] },
+    space: {
+      h: ['Stars beyond counting\nbut you counted anyway\nblast off, little star',
+        'Rocket on the pad\nten, nine, eight, you know the rest\nlift off, clever one',
+        'Moon dust on your boots\nfootprints made of right answers\nthey will last for years'],
+      j: ['How do you plan a party in space?\nYou planet!',
+        'Why did the sun go to school?\nTo get brighter!',
+        'What is an astronaut’s favourite key on the keyboard?\nThe space bar!'] },
+    wizard: {
+      h: ['A wave of the wand\nnumbers dance out of the hat\nyour brain is the spell',
+        'Old book, dusty spell\nturns a hard sum into gold\nthe secret is you',
+        'Owl upon the roof\nhoots the answer to the moon\nyou knew it first, though'],
+      j: ['How do wizards do their sums?\nWith a spell-culator!',
+        'What do you call a wizard from outer space?\nA flying sorcerer!',
+        'Why do wizards brush their teeth three times a day?\nTo stop bat breath!'] }
   };
   var KIND = [
     'You kept going, question after question. That is how brains get stronger.',
@@ -174,7 +174,7 @@
   ];
   var bags = {}, lastSaidAt = {};
   var YAY = ['You got it!', 'Nice one!', 'Spot on!', 'Keep it up!', 'Yes!'];
-  var theme = 'minty', lastSaid = '';
+  var theme = 'peacock', lastSaid = '';
 
   var mode = 'menu';
   var tables = [2];
@@ -220,9 +220,9 @@
   function answerOf(f) { return mode === 'times' ? f.a * f.b : mode === 'divide' ? f.a / f.b : mode === 'plus' ? f.a + f.b : f.a - f.b; }
 
   /* ---------- Themes and the buddy ---------- */
-  function T() { return THEMES[theme] || THEMES.minty; }
+  function T() { return THEMES[theme] || THEMES.peacock; }
   function applyTheme(id) {
-    theme = THEMES[id] ? id : 'minty';
+    theme = THEMES[id] ? id : 'peacock';
     $('menu-bubble').textContent = T().hi;
   }
   function nice() {
@@ -238,7 +238,7 @@
      shuffled into a random order and all used once before any repeats; the place in that order
      is kept between visits and across page updates. */
   function finishMessages() {
-    var f = FUN[theme] || FUN.minty, t = T(), at = Math.max(0, Object.keys(THEMES).indexOf(theme)), out = [], k;
+    var f = FUN[theme] || FUN.peacock, t = T(), at = Math.max(0, Object.keys(THEMES).indexOf(theme)), out = [], k;
     f.h.forEach(function (x) { out.push({ verse: x }); });
     f.j.forEach(function (x) { out.push({ text: x }); });
     return out;
