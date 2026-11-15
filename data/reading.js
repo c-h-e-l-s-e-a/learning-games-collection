@@ -269,18 +269,18 @@ var READING_DATA = (function () {
   /* After a round of Words, the buddy shares a haiku or a joke about reading or about itself.
      Five of each per buddy; they come in a shuffled order and all ten are used before any repeat. */
   var FUN = {
-    minty:{ h:[
-        "A frog on a page\nhops from one word to the next\nreading like a pro",
-        "Bug on a green log\nI can read the words out loud\nribbit means well done",
-        "Lily pads float by\nI read words while frogs sing songs\ndrip, drop, croak, croak, croak",
-        "Tadpoles grow to frogs\nsounds grow into words like this\nyou grow too, reader",
-        "Hop, hop, hop, three hops\nthree words read, then three words more\nthe frog cheers for you" ],
+    snow:{ h:[
+        "Snow falls on the page\nI read each word as it lands\nsoft, cold, white, and still",
+        "Footprints in the snow\nspell a word across the yard\ncan you read my tracks?",
+        "Hot cocoa and books\nI can’t drink it, I would melt\nso you read to me",
+        "Carrot for a nose\ntwo dark stones to be my eyes\nand I love to read",
+        "Snow day, no school bus\nsled, then read, then sled again\nwhat a perfect day" ],
       j:[
-        ["What does a frog say at the library?","Read it, read it, read it!"],
-        ["What do frogs do with paper?","Rip-it! Rip-it!"],
-        ["What kind of shoes do frogs wear?","Open-toad sandals!"],
-        ["What is a frog’s favourite drink?","Croak-a-cola!"],
-        ["What did the bus driver say to the frog?","Hop on!"] ] },
+        ["What do snowmen call their kids?","Chill-dren!"],
+        ["Where do snowmen go to dance?","A snowball!"],
+        ["How do snowmen get around town?","They ride an icicle!"],
+        ["What did one snowman say to the other?","Do you smell carrots?"],
+        ["What story does a snowman read at bedtime?","Cold-ilocks and the Three Bears!"] ] },
     kitty:{ h:[
         "Cat curled on my lap\npurrs at each word that I read\nyou are the top cat",
         "Tap, tap, go her paws\nshe points at words one by one\nthen she takes a nap",
@@ -305,42 +305,6 @@ var READING_DATA = (function () {
         ["What has four wheels and flies?","A garbage truck!"],
         ["Why did the race car need a nap?","It was exhausted!"],
         ["What did the traffic light say to the car?","Don’t look, I’m changing!"] ] },
-    wizard:{ h:[
-        "Tap the wand three times\nthe letters fly up and dance\nnow they spell a word",
-        "Toad in my tall hat\ncroaks each time you read a word\ncroak, croak, you are great",
-        "Big book full of spells\nyou can read them all yourself\nyou are magic too",
-        "Stars on a blue robe\none star for each word you read\nmy robe is full now",
-        "Bubble, bubble, pop\nthe potion turns bright purple\nwhen you read out loud" ],
-      j:[
-        ["Why are wizards so good at school?","They always win the spelling bee!"],
-        ["How does a wizard tell the time?","With a witch-watch!"],
-        ["Why did the wizard turn his book into a frog?","He wanted a hoppy ending!"],
-        ["What do you call a magician who lost his magic?","Ian! Take “magic” out of “magician” and see."],
-        ["What do you call a wizard’s dog?","A Labra-cadabra-dor!"] ] },
-    ocean:{ h:[
-        "Eight arms, eight good books\nI can read them all at once\ncan you do that too?",
-        "Note in a bottle\nfloats up to the sandy beach\ncan you read it? Yes!",
-        "Fish swim in a school\nthey read the words on the reef\ntop marks, little fish",
-        "Deep down in the sea\na whale sings a reading song\nla, la, la, cat, dog",
-        "Crab walks to the side\nreads a word, then reads one more\nsideways, still a win" ],
-      j:[
-        ["Why are fish so smart?","They live in schools!"],
-        ["What did the ocean say to the beach?","Nothing. It just waved!"],
-        ["How does an octopus go into battle?","Well armed!"],
-        ["What do sea monsters eat for lunch?","Fish and ships!"],
-        ["Where do fish sleep?","In a riverbed!"] ] },
-    space:{ h:[
-        "Small green alien\nlands to hear you read a book\nEarth words are so cool",
-        "Three, two, one, blast off\nmy rocket runs on your words\nread more, we go far",
-        "Moon and stars and sun\nshort words shining in the sky\nI can read them all",
-        "My rocket is slow\neach word you read fills my tank\nzoom, to the next star",
-        "Planets in a line\nspin around and spell a word\ns, u, n, sun, yes!" ],
-      j:[
-        ["What do aliens like to read?","Comet books!"],
-        ["Why did the cow go to space?","To see the moooon!"],
-        ["How does the moon cut its hair?","E-clipse it!"],
-        ["How do aliens hold up their pants?","With an asteroid belt!"],
-        ["What is an alien’s favourite treat?","Martian-mallows!"] ] },
     dino:{ h:[
         "Stomp, stomp, stomp, stomp, stomp\nthe ground shakes with each word read\nrawr means good reading",
         "Dino in the mud\nfinds a sign and reads it out\nno swimming, it says",
@@ -365,30 +329,18 @@ var READING_DATA = (function () {
         ["What is brown and sounds like a bell?","Dung!"],
         ["Knock, knock. Who’s there? Poo. Poo who?","Don’t cry, it’s only a joke!"],
         ["What did the toilet paper say after a long day?","I’m so wiped out!"] ] },
-    fox:{ h:[
-        "Orange tail, quick feet\nthe fox reads in the moonlight\nthen curls up to sleep",
-        "Sly fox in the woods\ntracks spell words from tree to tree\ncan you read the trail?",
-        "Fox finds a red hen\nreads her a book in the barn\nnow they are good pals",
-        "Bright eyes, bushy tail\nreads one word, then two, then three\nyou are clever too",
-        "Fox nose in the air\nit can smell a good book near\nsniff, sniff, read, read, read" ],
+    ballet:{ h:[
+        "Spin, spin, on my toes\nletters twirl and land as words\nbow, then read some more",
+        "Pink shoes, ribbons tied\nleap from word to word to word\nland on the last one",
+        "Curtain goes up high\nall the crowd can hear you read\nbravo, clap, clap, clap",
+        "First position, then\nsecond, third, and read a word\nfourth, fifth, curtsy, done",
+        "Swan on a still lake\nglides past words as soft as snow\nyou read them like that" ],
       j:[
-        ["Why did the fox read the book twice?","It was fox-cellent!"],
-        ["What do you call a fox in a box?","A box fox! Now say it five times fast."],
-        ["Why did the fox take a pencil to bed?","To draw the curtains!"],
-        ["What did the fox say to the hen?","You’re egg-cellent!"],
-        ["What do you call a fox that ate too much?","Fox-tra large!"] ] },
-    forest:{ h:[
-        "Big bear in the woods\nfinds a book beside the tree\nand reads it out loud",
-        "Honey, sweet and gold\neach word you read tastes like that\nyum, yum, read some more",
-        "Snow falls, bears go in\na long nap, but first, a book\nthen good night, sleep tight",
-        "Owls hoot, pine trees sway\na bear cub reads to the moon\nthe moon smiles back down",
-        "Paws in the cold stream\nI catch fish, and you catch words\nwe both did great work" ],
-      j:[
-        ["What do you call a bear with no ears?","A “b”!"],
-        ["Why do bears have fur coats?","For fur protection!"],
-        ["Why don’t bears wear shoes?","They like to go bear-foot!"],
-        ["Where do bears get their hair cut?","At the bear-ber shop!"],
-        ["Why do bears sleep all winter?","They can’t bear the cold!"] ] },
+        ["Why did the ballerina quit?","It was tu-tu hard!"],
+        ["Why did the ballerina go to the bank?","To check her balance!"],
+        ["Why do ballerinas love books?","Every good story has a twist!"],
+        ["What do you call a sheep that dances?","A baa-lerina!"],
+        ["Why did the ballerina take a tutu to the library?","Because tu-tu books are better than one!"] ] },
     peacock:{ h:[
         "Peacock on a wall\nreads the posters in the town\nlost cat, cake for sale",
         "Bright bird in the park\nstruts past words like cat and dog\nreads them, then shows off",
@@ -401,18 +353,66 @@ var READING_DATA = (function () {
         ["Why did the bird go to the library?","It was looking for bookworms!"],
         ["Why are peacocks bad at hide and seek?","They always show their true colours!"],
         ["Why do birds fly south for the winter?","It’s too far to walk!"] ] },
-    ballet:{ h:[
-        "Spin, spin, on my toes\nletters twirl and land as words\nbow, then read some more",
-        "Pink shoes, ribbons tied\nleap from word to word to word\nland on the last one",
-        "Curtain goes up high\nall the crowd can hear you read\nbravo, clap, clap, clap",
-        "First position, then\nsecond, third, and read a word\nfourth, fifth, curtsy, done",
-        "Swan on a still lake\nglides past words as soft as snow\nyou read them like that" ],
+    unicorn:{ h:[
+        "A unicorn reads\nunder a big rainbow sky\none word, then the next",
+        "My horn is a pen\nI write a word in the sky\ncan you read it now?",
+        "Glitter on the page\neach small letter twinkles bright\nread them, watch them shine",
+        "Clouds are soft as fluff\nI nap on them with a book\nthe best bed ever",
+        "Red, orange, yellow\ngreen and blue and purple too\nwords come in colours" ],
       j:[
-        ["Why did the ballerina quit?","It was tu-tu hard!"],
-        ["Why did the ballerina go to the bank?","To check her balance!"],
-        ["Why do ballerinas love books?","Every good story has a twist!"],
-        ["What do you call a sheep that dances?","A baa-lerina!"],
-        ["Why did the ballerina take a tutu to the library?","Because tu-tu books are better than one!"] ] }
+        ["What does a unicorn call its dad?","Pop-corn!"],
+        ["Why do unicorns love books?","They’re full of tails!"],
+        ["How do unicorns get to school?","On a uni-cycle!"],
+        ["What is a unicorn’s favourite letter?","U, of course!"],
+        ["Why did the unicorn cross the rainbow?","To get to the other side!"] ] },
+    ocean:{ h:[
+        "Eight arms, eight good books\nI can read them all at once\ncan you do that too?",
+        "Note in a bottle\nfloats up to the sandy beach\ncan you read it? Yes!",
+        "Fish swim in a school\nthey read the words on the reef\ntop marks, little fish",
+        "Deep down in the sea\na whale sings a reading song\nla, la, la, cat, dog",
+        "Crab walks to the side\nreads a word, then reads one more\nsideways, still a win" ],
+      j:[
+        ["Why are fish so smart?","They live in schools!"],
+        ["What did the ocean say to the beach?","Nothing. It just waved!"],
+        ["How does an octopus go into battle?","Well armed!"],
+        ["What do sea monsters eat for lunch?","Fish and ships!"],
+        ["Where do fish sleep?","In a riverbed!"] ] },
+    forest:{ h:[
+        "Big bear in the woods\nfinds a book beside the tree\nand reads it out loud",
+        "Honey, sweet and gold\neach word you read tastes like that\nyum, yum, read some more",
+        "Snow falls, bears go in\na long nap, but first, a book\nthen good night, sleep tight",
+        "Owls hoot, pine trees sway\na bear cub reads to the moon\nthe moon smiles back down",
+        "Paws in the cold stream\nI catch fish, and you catch words\nwe both did great work" ],
+      j:[
+        ["What do you call a bear with no ears?","A “b”!"],
+        ["Why do bears have fur coats?","For fur protection!"],
+        ["Why don’t bears wear shoes?","They like to go bear-foot!"],
+        ["Where do bears get their hair cut?","At the bear-ber shop!"],
+        ["Why do bears sleep all winter?","They can’t bear the cold!"] ] },
+    space:{ h:[
+        "Small green alien\nlands to hear you read a book\nEarth words are so cool",
+        "Three, two, one, blast off\nmy rocket runs on your words\nread more, we go far",
+        "Moon and stars and sun\nshort words shining in the sky\nI can read them all",
+        "My rocket is slow\neach word you read fills my tank\nzoom, to the next star",
+        "Planets in a line\nspin around and spell a word\ns, u, n, sun, yes!" ],
+      j:[
+        ["What do aliens like to read?","Comet books!"],
+        ["Why did the cow go to space?","To see the moooon!"],
+        ["How does the moon cut its hair?","E-clipse it!"],
+        ["How do aliens hold up their pants?","With an asteroid belt!"],
+        ["What is an alien’s favourite treat?","Martian-mallows!"] ] },
+    wizard:{ h:[
+        "Tap the wand three times\nthe letters fly up and dance\nnow they spell a word",
+        "Toad in my tall hat\ncroaks each time you read a word\ncroak, croak, you are great",
+        "Big book full of spells\nyou can read them all yourself\nyou are magic too",
+        "Stars on a blue robe\none star for each word you read\nmy robe is full now",
+        "Bubble, bubble, pop\nthe potion turns bright purple\nwhen you read out loud" ],
+      j:[
+        ["Why are wizards so good at school?","They always win the spelling bee!"],
+        ["How does a wizard tell the time?","With a witch-watch!"],
+        ["Why did the wizard turn his book into a frog?","He wanted a hoppy ending!"],
+        ["What do you call a magician who lost his magic?","Ian! Take “magic” out of “magician” and see."],
+        ["What do you call a wizard’s dog?","A Labra-cadabra-dor!"] ] }
   };
 
 /*FRIENDS*/
